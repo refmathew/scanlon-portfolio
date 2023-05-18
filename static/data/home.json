@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "title": "Lorem ipsum dolor sit amet.",
+    "subtitle": "Lorem ipsum dolor sit amet consectetur. Elementum neque proin adipiscing justo et tristique nec elementum."
+  },
+  "statement": "I help businesses improve their online presence for greater visibility and reach, or something like this",
+  "services": [
+    {
+      "title": "Lorem ipsum dolor",
+      "subtitle": "Lorem ipsum dolor sit amet consectetur. Elementum neque proin adipiscing justo et tristique nec elementum."
+    },
+    {
+      "title": "Tincidunt sit in quam",
+      "subtitle": "Sit ac odio risus eget pretium justo vehicula erat. Vulputate sit nisl placerat libero tincidunt scelerisque mauris eget sed. Auctor risus quis a molestie tempor fermentum."
+    }
+  ],
+  "testimonials": [
+    {
+      "testimonial": "We doubled leads generated from our website in the first month of launch.",
+      "customer": "John Doe"
+    },
+    {
+      "testimonial": "Diam rhoncus proin condimentum quam sit sollicitudin odio id. Lacus a in sit arcu placerat libero sem mi feugiat.",
+      "customer": "Mira Aminoff"
+    },
+    {
+      "testimonial": "Massa dui morbi elementum nisl nec eget magna. Enim elementum sapien vitae rhoncus pellentesque penatibus.",
+      "customer": "Davis Gouse"
+    },
+    {
+      "testimonial": "Velit porttitor posuere tellus et risus tortor non. Nec tellus fusce aliquam dictum tortor turpis maecenas ut cras.",
+      "customer": "Kaylynn Bator"
+    },
+    {
+      "testimonial": "Sodales congue ultricies eget sem cursus amet. Non in nisl arcu ut id ac.",
+      "customer": "Alfredo Workman"
+    }
+  ]
+}
