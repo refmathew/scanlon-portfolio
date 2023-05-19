@@ -1,8 +1,11 @@
 <script setup>
+import axios from 'axios';
 import ContentService from '../services/content-service';
 
-const homeContent = ref({})
-homeContent.value = await ContentService.FetchHomeContent();
+
+const homeContent = ref(undefined);
+(async () => homeContent.value = await ContentService.FetchHomeContent())();
+
 </script>
 
 <template>
