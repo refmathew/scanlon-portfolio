@@ -32,7 +32,7 @@
 			</nav>
 			<contact-button class="header__contact-button" background="blue" />
 			<button class="header__burger"
-				:class="{ 'header__burger--active': isBurgerClicked, 'header__burger--inactive': isBurgerClicked === false }"
+				:class="{'header__burger--inactive': isBurgerClicked === false }"
 				@click.prevent="isBurgerClicked = !isBurgerClicked">
 				<span class="header__burger-line"></span>
 				<span class="header__burger-line"></span>
@@ -41,8 +41,9 @@
 		</div>
 
 		<!-- The nav to use when on smaller screens -->
-		<nav class="header__nav header__nav-mobile"
-			:class="{ 'header__nav-mobile--active': isBurgerClicked, 'header__nav-mobile--inactive': isBurgerClicked === false }">
+		<nav 
+			class="header__nav header__nav-mobile"
+			:class="{ 'header__nav-mobile--active': isBurgerClicked, 'header__nav-mobile--inactive': isBurgerClicked === false }" >
 			<ul class="header__nav-list">
 				<li class="header__nav-list-item">
 					<nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
@@ -73,7 +74,7 @@ const props = defineProps({
 	background: String
 })
 
-const isBurgerClicked = ref()
+const isBurgerClicked = ref(false);
 </script>
 
 
@@ -81,12 +82,14 @@ const isBurgerClicked = ref()
 @use '@/assets/styles/abstracts' as a
 
 .header 
-	position: relative
+	position: fixed
+	top: 0
+	z-index: 1
+	width: 100%
 	color: a.$v-accent-1
 	
 	&__main
-		padding: a.f-clampify(24, 32) a.f-clampify(20, 126) 
-		background-color: a.$v-primary
+		padding: a.f-clampify(24, 32) a.f-clampify(20, 126)
 		@include a.m-flex($aln: center, $jst: space-between)
 		
 	// ==========================================================================>
@@ -127,17 +130,15 @@ const isBurgerClicked = ref()
 		width: 2.8rem
 		height: .2rem
 		background-color: a.$v-accent-1
+	
+	&__burger-line:first-child
+		animation: burger-1--active 800ms forwards
 
-	&__burger--active
+	&__burger-line:nth-child(2)
+		animation: burger-2--active 800ms forwards
 
-		.header__burger-line:first-child
-			animation: burger-1--active 800ms forwards
-
-		.header__burger-line:nth-child(2)
-			animation: burger-2--active 800ms forwards
-
-		.header__burger-line:last-child
-			animation: burger-3--active 800ms forwards
+	&__burger-line:last-child
+		animation: burger-3--active 800ms forwards
 
 	&__burger--inactive
 
@@ -154,7 +155,7 @@ const isBurgerClicked = ref()
 
 	&__contact-button
 		display: none
-		transform: translateY(1.2rem)
+		transform: trans lateY(1.2rem)
 		@include a.m-for-size(desktop)
 			display: inline
 
@@ -165,17 +166,20 @@ const isBurgerClicked = ref()
 		z-index: -1
 		display: block
 		width: 100%
-		padding: a.f-clampify(16, 24) a.f-clampify(20, 126) 
+		padding: a.f-clampify(16, 24) a.f-clampify(20, 126)
+		opacity: 1
 		transform: translateY(0)
-		background-color: a.$v-primary
+		transition: opacity 480ms 320ms cubic-bezier(.4,0,.2,1), transform 480ms 320ms cubic-bezier(.4,0,.2,1)
+		// transform: translateY(-256%)
 		@include a.m-for-size(desktop)
 			display: none
 
-	&__nav-mobile--active
-		animation: nav-mobile--active 800ms forwards
-
 	&__nav-mobile--inactive
-		animation: nav-mobile--inactive 400ms forwards
+		opacity: 0
+		transform: translateY(-256%)
+
+	// &__nav-mobile--inactive
+	// 	animation: nav-mobile--inactive 400ms cubic-bezier(0.4, 0, 0.2, 1) 400ms forwards
 
 	// ==========================================================================>
 		
@@ -186,17 +190,15 @@ const isBurgerClicked = ref()
 // ==========================================================================>
 
 .header--blue-bg
-		color: a.$v-primary
+	color: a.$v-primary
 
-		.header__main
-			background-color: a.$v-accent-1
+	.header__main
 
-		.header__burger-line
-			background-color: a.$v-primary
+	.header__burger-line
+		background-color: a.$v-primary
 
-		.header__nav-mobile
-			background-color: a.$v-accent-1
-			animation-timing-function: linear
+	.header__nav-mobile
+		animation-timing-function: linear
 
 
 
@@ -248,16 +250,20 @@ const isBurgerClicked = ref()
 	100%
 		transform: translateY(0) rotate(0)
 
-@keyframes nav-mobile--active
-	0%
-		transform: translateY(-300%)
-	100%
-		transform: translateY(0)
+// @keyframes nav-mobile--active
+// 	0%
+// 		transform: translateY(-256%)
+// 		opacity: 0
+// 	100%
+// 		transform: translateY(0)
+// 		opacity: 1
 
-@keyframes nav-mobile--inactive
-	0%
-		transform: translateY(0)
-	100%
-		transform: translateY(-300%)
+// @keyframes nav-mobile--inactive
+// 	0%
+// 		transform: translateY(0)
+// 		opacity: 1
+// 	100%
+// 		transform: translateY(-256%)
+// 		opacity: 0
 
 </style>
