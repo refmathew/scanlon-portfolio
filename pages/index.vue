@@ -1,15 +1,23 @@
 <script setup>
-import axios from 'axios';
-import ContentService from '../services/content-service';
+import ContentService from "../services/content-service";
+const homeContent = useState("homeContent");
 
-
-const homeContent = ref(undefined);
-(async () => homeContent.value = await ContentService.FetchHomeContent())();
-
+(async () => (homeContent.value = await ContentService.FetchHomeContent()))();
 </script>
 
 <template>
   <NuxtLayout background="blue">
-  {{ homeContent }}
+    <div class="home-page">
+      <IndexPreLoader />
+      <IndexSecHero />
+    </div>
   </NuxtLayout>
 </template>
+
+<style scoped lang="scss">
+@use "@/assets/styles/abstracts" as a;
+.home-page {
+  background-color: a.$v-accent-1;
+  color: a.$v-primary;
+}
+</style>

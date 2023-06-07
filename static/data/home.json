@@ -1,7 +1,14 @@
 {
   "hero": {
     "title": "Lorem ipsum dolor sit amet.",
-    "subtitle": "Lorem ipsum dolor sit amet consectetur. Elementum neque proin adipiscing justo et tristique nec elementum."
+    "subtitle": [
+      "Lorem ipsum dolor sit amet consectetur.",
+      " Elementum neque proin adipiscing justo et tristique nec elementum."
+    ],
+    "brands": [
+      ["coca-cola", "nike", "uniqlo", "pinterest", "microsoft"],
+      ["adidas", "amazon", "reddit", "spotify", "prime-video"]
+    ]
   },
   "statement": "I help businesses improve their online presence for greater visibility and reach, or something like this",
   "services": [

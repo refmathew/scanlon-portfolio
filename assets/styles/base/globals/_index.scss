@@ -2,9 +2,18 @@ html {
   scroll-behavior: smooth;
   font-size: 62.5%;
 }
-
 body {
   font-size: 1.6rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 900;
+}
+#__nuxt {
+  min-width: 36rem;
+}
+.sct-ctr {
+  width: 100%;
+}
+.sct {
+  max-width: 144rem;
+  margin: auto;
 }

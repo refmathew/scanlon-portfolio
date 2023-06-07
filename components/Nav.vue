@@ -1,97 +1,151 @@
 <template>
-	<header class="header" :class="{ 'header--blue-bg': background === 'blue' }">
-		<div class="header__main">
-			<nuxt-link class="header__logo-wrapper" to="/">
-				<img class="header__logo" v-if="props.background === 'blue'" src='@/assets/img/brand-white.svg' />
-				<img class="header__logo" v-else src='@/assets/img/brand-blue.svg' />
-				<span class="header__logo-name">
-					John Scanlon
-				</span>
-			</nuxt-link>
-			<nav class="header__nav">
-				<ul class="header__nav-list">
-					<li class="header__nav-list-item">
-						<nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
-					</li>
-					<li class="header__nav-list-item">
-						<nuxt-link class="header__nav-link" to="/#services"> Services </nuxt-link>
-					</li>
-					<li class="header__nav-list-item">
-						<nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
-					</li>
-					<li class="header__nav-list-item">
-						<nuxt-link class="header__nav-link" to="/#testimonials"> Testimonials </nuxt-link>
-					</li>
-					<li class="header__nav-list-item">
-						<nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
-					</li>
-					<li class="header__nav-list-item">
-						<nuxt-link class="header__nav-link" to="/contact"> Contact </nuxt-link>
-					</li>
-				</ul>
-			</nav>
-			<contact-button class="header__contact-button" background="blue" />
-			<button class="header__burger"
-				:class="{'header__burger--inactive': isBurgerClicked === false }"
-				@click.prevent="isBurgerClicked = !isBurgerClicked">
-				<span class="header__burger-line"></span>
-				<span class="header__burger-line"></span>
-				<span class="header__burger-line"></span>
-			</button>
-		</div>
+  <header
+    class="header"
+    :class="{
+      'header--blue-bg': background === 'blue',
+      'header--active': isBurgerClicked === true,
+    }"
+    ref="$header"
+  >
+    <div class="header__main sct">
+      <nuxt-link class="header__logo-wrapper" to="/">
+        <img
+          class="header__logo"
+          v-if="props.background === 'blue'"
+          src="@/assets/img/brand--white.svg"
+        />
+        <img class="header__logo" v-else src="@/assets/img/brand--blue.svg" />
+        <span class="header__logo-name"> John Scanlon </span>
+      </nuxt-link>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-list-item">
+            <nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
+          </li>
+          <li class="header__nav-list-item">
+            <nuxt-link class="header__nav-link" to="/#services">
+              Services
+            </nuxt-link>
+          </li>
+          <li class="header__nav-list-item">
+            <nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
+          </li>
+          <li class="header__nav-list-item">
+            <nuxt-link class="header__nav-link" to="/#testimonials">
+              Testimonials
+            </nuxt-link>
+          </li>
+          <li class="header__nav-list-item">
+            <nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
+          </li>
+          <li class="header__nav-list-item">
+            <nuxt-link class="header__nav-link" to="/contact">
+              Contact
+            </nuxt-link>
+          </li>
+        </ul>
+      </nav>
+      <ContactButton class="header__contact-button" background="white" />
+      <button
+        class="header__burger"
+        :class="{ 'header__burger--inactive': isBurgerClicked === false }"
+        @click.prevent="isBurgerClicked = !isBurgerClicked"
+      >
+        <span class="header__burger-line"></span>
+        <span class="header__burger-line"></span>
+        <span class="header__burger-line"></span>
+      </button>
+    </div>
 
-		<!-- The nav to use when on smaller screens -->
-		<nav 
-			class="header__nav header__nav-mobile"
-			:class="{ 'header__nav-mobile--active': isBurgerClicked, 'header__nav-mobile--inactive': isBurgerClicked === false }" >
-			<ul class="header__nav-list">
-				<li class="header__nav-list-item">
-					<nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
-				</li>
-				<li class="header__nav-list-item">
-					<nuxt-link class="header__nav-link" to="/#services"> Services </nuxt-link>
-				</li>
-				<li class="header__nav-list-item">
-					<nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
-				</li>
-				<li class="header__nav-list-item">
-					<nuxt-link class="header__nav-link" to="/#testimonials"> Testimonials </nuxt-link>
-				</li>
-				<li class="header__nav-list-item">
-					<nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
-				</li>
-				<li class="header__nav-list-item">
-					<nuxt-link class="header__nav-link" to="/contact"> Contact </nuxt-link>
-				</li>
-			</ul>
-		</nav>
-	</header>
+    <!-- The nav to use when on smaller screens -->
+    <nav
+      class="header__nav header__nav-mobile"
+      :class="{
+        'header__nav-mobile--active': isBurgerClicked,
+        'header__nav-mobile--inactive': isBurgerClicked === false,
+      }"
+      ref="$mobileNav"
+    >
+      <ul class="header__nav-list">
+        <li class="header__nav-list-item">
+          <nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
+        </li>
+        <li class="header__nav-list-item">
+          <nuxt-link class="header__nav-link" to="/#services">
+            Services
+          </nuxt-link>
+        </li>
+        <li class="header__nav-list-item">
+          <nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
+        </li>
+        <li class="header__nav-list-item">
+          <nuxt-link class="header__nav-link" to="/#testimonials">
+            Testimonials
+          </nuxt-link>
+        </li>
+        <li class="header__nav-list-item">
+          <nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
+        </li>
+        <li class="header__nav-list-item">
+          <nuxt-link class="header__nav-link" to="/contact">
+            Contact
+          </nuxt-link>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
-
 
 <script setup>
 const props = defineProps({
-	background: String
-})
+  background: String,
+});
 
 const isBurgerClicked = ref(false);
-</script>
 
+// ===========================================================================>
+// ===   Nav Animation   =====================================================>
+// ===========================================================================>
+
+const $header = ref(null);
+const $mobileNav = ref(null);
+let headerHeight;
+let mobileNavHeight;
+onMounted(() => {
+  headerHeight = $header.value.clientHeight;
+  mobileNavHeight = $mobileNav.value.clientHeight;
+  $header.value.style.height = `${headerHeight}px`;
+});
+watch(isBurgerClicked, (value) => {
+  if (value === true)
+    return ($header.value.style.height = `${headerHeight + mobileNavHeight}px`);
+  $header.value.style.height = `${headerHeight}px`;
+});
+</script>
 
 <style lang="sass" scoped>
 @use '@/assets/styles/abstracts' as a
 
-.header 
+.header
 	position: fixed
 	top: 0
 	z-index: 1
 	width: 100%
+	height: v-bind(headerHeight)
 	color: a.$v-accent-1
-	
+	transition: height 320ms 480ms cubic-bezier(.4,0,.2,1)
+	background-color: rgba(a.$v-accent-1, .64)
+	backdrop-filter: blur(16px)
+
+	&--scrolled
+		background-color: rgba(a.$v-accent-1, .64)
+		backdrop-filter: blur(16px)
+
 	&__main
+		margin: auto
 		padding: a.f-clampify(24, 32) a.f-clampify(20, 126)
 		@include a.m-flex($aln: center, $jst: space-between)
-		
+
 	// ==========================================================================>
 
 	&__logo-wrapper
@@ -130,7 +184,7 @@ const isBurgerClicked = ref(false);
 		width: 2.8rem
 		height: .2rem
 		background-color: a.$v-accent-1
-	
+
 	&__burger-line:first-child
 		animation: burger-1--active 800ms forwards
 
@@ -182,7 +236,7 @@ const isBurgerClicked = ref(false);
 	// 	animation: nav-mobile--inactive 400ms cubic-bezier(0.4, 0, 0.2, 1) 400ms forwards
 
 	// ==========================================================================>
-		
+
 	&__nav-list
 		gap: a.f-clampify(16, 20)
 		flex-wrap: wrap
@@ -265,5 +319,4 @@ const isBurgerClicked = ref(false);
 // 	100%
 // 		transform: translateY(-256%)
 // 		opacity: 0
-
 </style>
