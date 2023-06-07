@@ -1,3 +1,28 @@
+<script setup>
+import { vElementSize } from "@vueuse/components";
+const props = defineProps({
+  background: String,
+});
+
+const isBurgerClicked = ref(false);
+
+// ===========================================================================>
+// ===   Nav Animation   =====================================================>
+// ===========================================================================>
+
+const $headerMain = ref(null);
+const $mobileNav = ref(null);
+const headerHeight = ref("");
+const headerActivePadding = ref("");
+
+const handleMobileNavResize = ({ width, height }) => {
+  const headerPaddingTop = Number(
+    window.getComputedStyle($headerMain.value).paddingTop.slice(0, -2)
+  );
+  headerActivePadding.value = `${height + headerPaddingTop}px`;
+};
+</script>
+
 <template>
   <header
     class="header"
@@ -5,9 +30,8 @@
       'header--blue-bg': background === 'blue',
       'header--active': isBurgerClicked === true,
     }"
-    ref="$header"
   >
-    <div class="header__main sct">
+    <div class="header__main sct" ref="$headerMain">
       <nuxt-link class="header__logo-wrapper" to="/">
         <img
           class="header__logo"
@@ -65,6 +89,7 @@
         'header__nav-mobile--inactive': isBurgerClicked === false,
       }"
       ref="$mobileNav"
+      v-element-size="handleMobileNavResize"
     >
       <ul class="header__nav-list">
         <li class="header__nav-list-item">
@@ -96,46 +121,21 @@
   </header>
 </template>
 
-<script setup>
-const props = defineProps({
-  background: String,
-});
-
-const isBurgerClicked = ref(false);
-
-// ===========================================================================>
-// ===   Nav Animation   =====================================================>
-// ===========================================================================>
-
-const $header = ref(null);
-const $mobileNav = ref(null);
-let headerHeight;
-let mobileNavHeight;
-onMounted(() => {
-  headerHeight = $header.value.clientHeight;
-  mobileNavHeight = $mobileNav.value.clientHeight;
-  $header.value.style.height = `${headerHeight}px`;
-});
-watch(isBurgerClicked, (value) => {
-  if (value === true)
-    return ($header.value.style.height = `${headerHeight + mobileNavHeight}px`);
-  $header.value.style.height = `${headerHeight}px`;
-});
-</script>
-
 <style lang="sass" scoped>
 @use '@/assets/styles/abstracts' as a
 
 .header
 	position: fixed
 	top: 0
-	z-index: 1
+	z-index: 999
 	width: 100%
-	height: v-bind(headerHeight)
 	color: a.$v-accent-1
-	transition: height 320ms 480ms cubic-bezier(.4,0,.2,1)
+	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1)
 	background-color: rgba(a.$v-accent-1, .64)
 	backdrop-filter: blur(16px)
+
+	&--active
+		padding-bottom: v-bind(headerActivePadding)
 
 	&--scrolled
 		background-color: rgba(a.$v-accent-1, .64)
@@ -209,7 +209,7 @@ watch(isBurgerClicked, (value) => {
 
 	&__contact-button
 		display: none
-		transform: trans lateY(1.2rem)
+		transform: translateY(1.2rem)
 		@include a.m-for-size(desktop)
 			display: inline
 
@@ -220,7 +220,7 @@ watch(isBurgerClicked, (value) => {
 		z-index: -1
 		display: block
 		width: 100%
-		padding: a.f-clampify(16, 24) a.f-clampify(20, 126)
+		padding: 0 a.f-clampify(20, 126) a.f-clampify(16, 24)
 		opacity: 1
 		transform: translateY(0)
 		transition: opacity 480ms 320ms cubic-bezier(.4,0,.2,1), transform 480ms 320ms cubic-bezier(.4,0,.2,1)
@@ -238,6 +238,7 @@ watch(isBurgerClicked, (value) => {
 	// ==========================================================================>
 
 	&__nav-list
+		justify-content: center
 		gap: a.f-clampify(16, 20)
 		flex-wrap: wrap
 
