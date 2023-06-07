@@ -12,7 +12,6 @@ const isBurgerClicked = ref(false);
 
 const $headerMain = ref(null);
 const $mobileNav = ref(null);
-const headerHeight = ref("");
 const headerActivePadding = ref("");
 
 const handleMobileNavResize = ({ width, height }) => {
@@ -130,16 +129,16 @@ const handleMobileNavResize = ({ width, height }) => {
 	z-index: 999
 	width: 100%
 	color: a.$v-accent-1
-	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1)
+	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1), padding 320ms 480ms cubic-bezier(.4,0,.2,1)
 	background-color: rgba(a.$v-accent-1, .64)
-	backdrop-filter: blur(16px)
+	backdrop-filter: blur(32px)
+	border-bottom: solid .5px a.$v-accent-2
 
 	&--active
 		padding-bottom: v-bind(headerActivePadding)
 
 	&--scrolled
-		background-color: rgba(a.$v-accent-1, .64)
-		backdrop-filter: blur(16px)
+
 
 	&__main
 		margin: auto
