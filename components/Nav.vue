@@ -4,14 +4,16 @@ const props = defineProps({
   background: String,
 });
 
+const $header = ref(null);
+const $headerMain = ref(null);
+const $mobileNav = ref(null);
+
 const isBurgerClicked = ref(false);
 
 // ===========================================================================>
 // ===   Nav Animation   =====================================================>
 // ===========================================================================>
 
-const $headerMain = ref(null);
-const $mobileNav = ref(null);
 const headerActivePadding = ref("");
 
 const handleMobileNavResize = ({ width, height }) => {
@@ -20,6 +22,30 @@ const handleMobileNavResize = ({ width, height }) => {
   );
   headerActivePadding.value = `${height + headerPaddingTop}px`;
 };
+
+// ===========================================================================>
+// ===   Nav Border Animation   ==============================================>
+// ===========================================================================>
+const isNavScrolled = ref(undefined);
+
+onMounted(() => {
+  const $illustration = document.querySelector(".hero__illustration");
+  const $heroText = document.querySelector(".hero__text");
+
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth > 1280) {
+      $header.value.getBoundingClientRect().bottom >=
+      $heroText.getBoundingClientRect().top
+        ? (isNavScrolled.value = true)
+        : (isNavScrolled.value = false);
+    }
+
+    $header.value.getBoundingClientRect().bottom >=
+    $illustration.getBoundingClientRect().top
+      ? (isNavScrolled.value = true)
+      : (isNavScrolled.value = false);
+  });
+});
 </script>
 
 <template>
@@ -28,7 +54,9 @@ const handleMobileNavResize = ({ width, height }) => {
     :class="{
       'header--blue-bg': background === 'blue',
       'header--active': isBurgerClicked === true,
+      'header--scrolled': isNavScrolled,
     }"
+    ref="$header"
   >
     <div class="header__main sct" ref="$headerMain">
       <nuxt-link class="header__logo-wrapper" to="/">
@@ -128,17 +156,17 @@ const handleMobileNavResize = ({ width, height }) => {
 	top: 0
 	z-index: 999
 	width: 100%
+	border-bottom: solid 0px a.$v-accent-2
 	color: a.$v-accent-1
-	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1), padding 320ms 480ms cubic-bezier(.4,0,.2,1)
+	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1)
 	background-color: rgba(a.$v-accent-1, .64)
 	backdrop-filter: blur(32px)
-	border-bottom: solid .5px a.$v-accent-2
 
 	&--active
 		padding-bottom: v-bind(headerActivePadding)
 
 	&--scrolled
-
+		border-bottom: solid 1px a.$v-accent-2
 
 	&__main
 		margin: auto
