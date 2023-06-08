@@ -17,3 +17,19 @@ body {
   max-width: 144rem;
   margin: auto;
 }
+.hide--below {
+  transform: translateY(6.4rem) !important;
+  opacity: 0 !important;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+.reveal--below {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+.hide--transparent {
+  opacity: 0 !important;
+  transition: opacity 400ms ease-out;
+}
+.reveal--transparent {
+  opacity: 1 !important;
+}
