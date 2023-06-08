@@ -10,6 +10,7 @@ const homeContent = useState("homeContent");
     <div class="home-page">
       <IndexPreLoader />
       <IndexSecHero />
+      <IndexSectionStatement />
     </div>
   </NuxtLayout>
 </template>
