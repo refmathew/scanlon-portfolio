@@ -14,11 +14,15 @@
   "services": [
     {
       "title": "Lorem ipsum dolor",
-      "subtitle": "Lorem ipsum dolor sit amet consectetur. Elementum neque proin adipiscing justo et tristique nec elementum."
+      "definition": "Lorem ipsum dolor sit amet consectetur. Elementum neque proin adipiscing justo et tristique nec elementum."
     },
     {
       "title": "Tincidunt sit in quam",
-      "subtitle": "Sit ac odio risus eget pretium justo vehicula erat. Vulputate sit nisl placerat libero tincidunt scelerisque mauris eget sed. Auctor risus quis a molestie tempor fermentum."
+      "definition": "Sit ac odio risus eget pretium justo vehicula erat. Vulputate sit nisl placerat libero tincidunt scelerisque mauris eget sed. Auctor risus quis a molestie tempor fermentum."
+    },
+    {
+      "title": "Velit porttitor posuere",
+      "definition": "Massa dui morbi elementum nisl nec eget magna. Enim elementum sapien vitae rhoncus pellentesque penatibus"
     }
   ],
   "testimonials": [
