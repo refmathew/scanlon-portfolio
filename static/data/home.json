@@ -13,14 +13,17 @@
   "statement": "I help businesses improve their online presence for greater visibility and reach, or something like this",
   "services": [
     {
+      "icon": "paintbrush",
       "title": "Lorem ipsum dolor",
       "definition": "Lorem ipsum dolor sit amet consectetur. Elementum neque proin adipiscing justo et tristique nec elementum."
     },
     {
+      "icon": "code",
       "title": "Tincidunt sit in quam",
       "definition": "Sit ac odio risus eget pretium justo vehicula erat. Vulputate sit nisl placerat libero tincidunt scelerisque mauris eget sed. Auctor risus quis a molestie tempor fermentum."
     },
     {
+      "icon": "search",
       "title": "Velit porttitor posuere",
       "definition": "Massa dui morbi elementum nisl nec eget magna. Enim elementum sapien vitae rhoncus pellentesque penatibus"
     }
