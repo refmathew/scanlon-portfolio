@@ -12,10 +12,11 @@ body {
 }
 .sct-ctr {
   width: 100%;
+  display: grid;
+  place-items: center;
 }
 .sct {
   max-width: 144rem;
-  margin: auto;
 }
 .hide--below {
   transform: translateY(6.4rem) !important;
