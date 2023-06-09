@@ -1,15 +1,31 @@
 <script setup>
 const homeContent = useState("homeContent");
+
+const $servicesSection = ref(null);
+const $servicesMain = ref(null);
+const $servicesTitle = ref(null);
+
+onMounted(() => {
+  useRevealAnimation($servicesSection.value, "reveal--below");
+  useRevealAnimation($servicesTitle.value, "reveal--below");
+  const $services = $servicesMain.value.querySelectorAll(".services__service");
+  $services.forEach(($service) => {
+    console.log($service);
+    useRevealAnimation($service, "reveal--below");
+  });
+});
 </script>
 
 <template>
   <section class="services__container sct-ctr">
-    <div class="services sct">
+    <div class="services sct hide--below" ref="$servicesSection">
       <div class="services__main">
-        <div class="services__title">What I bring to the table</div>
-        <div class="services__body">
+        <div class="services__title hide--below" ref="$servicesTitle">
+          What I bring to the table
+        </div>
+        <div class="services__body" ref="$servicesMain">
           <div
-            class="services__service"
+            class="services__service hide--below"
             v-for="service in homeContent?.services"
           >
             <img
@@ -100,6 +116,15 @@ const homeContent = useState("homeContent");
     @include a.m-for-size(tablet) {
       max-width: 25.6rem;
     }
+  }
+  &__service:nth-child(1) {
+    transition-delay: 100ms;
+  }
+  &__service:nth-child(2) {
+    transition-delay: 200ms;
+  }
+  &__service:nth-child(3) {
+    transition-delay: 300ms;
   }
   &__service-icon {
     width: 6.4rem;
