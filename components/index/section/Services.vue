@@ -128,6 +128,7 @@ onMounted(() => {
   }
   &__service-icon {
     width: 6.4rem;
+    margin-bottom: a.f-clampify(8, 16);
   }
   &__service-title {
     font-size: 2.4rem;
