@@ -59,7 +59,7 @@ $sliderSpeed: 16s;
 .brand-slider {
   position: relative;
   overflow: hidden;
-  width: 100%;
+  width: a.f-clampify(324, 600);
   max-width: v-bind(brandSliderTrackWidth);
 
   &::before,
@@ -74,11 +74,11 @@ $sliderSpeed: 16s;
   }
 
   &::before {
-    left: 0;
+    left: -0.1rem;
   }
 
   &::after {
-    right: 0;
+    right: -0.1rem;
     transform: rotate(180deg);
   }
 

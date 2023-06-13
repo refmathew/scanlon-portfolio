@@ -98,9 +98,9 @@ onMounted(() => {
 }
 
 .statement {
-  // padding: a.f-clampify(128, 320) a.f-clampify(20, 273.5);
   min-height: 100vh;
   padding: a.f-clampify(128, 256) a.f-clampify(20, 273.5);
+  overflow: hidden;
 
   &__main {
     position: relative;
