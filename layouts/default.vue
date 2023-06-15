@@ -1,10 +1,10 @@
 <template>
-  <Nav :background="props.background"/>
+  <Nav :background="props.background" />
   <slot />
 </template>
 
 <script setup>
 const props = defineProps({
-  background: String
-})
+  background: String,
+});
 </script>
