@@ -16,6 +16,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
     "@vueuse/components": "^10.1.2",
-    "@vueuse/core": "^10.1.2"
+    "@vueuse/core": "^10.1.2",
+    "swiper": "^9.4.1"
   }
 }

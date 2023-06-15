@@ -8,10 +8,11 @@ const homeContent = useState("homeContent");
 <template>
   <NuxtLayout background="blue">
     <div class="home-page">
-      <IndexPreLoader />
+      <!-- <IndexPreLoader /> -->
       <IndexSecHero />
       <IndexSectionStatement />
       <IndexSectionServices />
+      <IndexSectionTestimonials />
     </div>
   </NuxtLayout>
 </template>
