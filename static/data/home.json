@@ -49,5 +49,43 @@
       "testimonial": "Sodales congue ultricies eget sem cursus amet. Non in nisl arcu ut id ac.",
       "customer": "Alfredo Workman"
     }
+  ],
+  "work": [
+    {
+      "company": "Moooi",
+      "websiteImage": "moooi"
+    },
+    {
+      "company": "Digital Cover",
+      "websiteImage": "digital-cover"
+    },
+    {
+      "company": "Penshoppe",
+      "websiteImage": "penshoppe"
+    },
+    {
+      "company": "Adidas",
+      "websiteImage": "adidas"
+    },
+    {
+      "company": "Swab the World",
+      "websiteImage": "swab-the-world"
+    },
+    {
+      "company": "Mubasic",
+      "websiteImage": "mubasic"
+    },
+    {
+      "company": "Nike",
+      "websiteImage": "nike"
+    },
+    {
+      "company": "Superlist",
+      "websiteImage": "superlist"
+    },
+    {
+      "company": "Newest Americans",
+      "websiteImage": "newest-americans"
+    }
   ]
 }
