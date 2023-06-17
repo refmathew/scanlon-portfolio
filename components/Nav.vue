@@ -1,5 +1,7 @@
 <script setup>
 import { vElementSize } from "@vueuse/components";
+import { useElementBounding, useWindowScroll } from "@vueuse/core";
+
 const props = defineProps({
   background: String,
 });
@@ -7,7 +9,6 @@ const props = defineProps({
 const $header = ref(null);
 const $headerMain = ref(null);
 const $mobileNav = ref(null);
-
 const isBurgerClicked = ref(false);
 
 // ===========================================================================>
@@ -15,7 +16,6 @@ const isBurgerClicked = ref(false);
 // ===========================================================================>
 
 const headerActivePadding = ref("");
-
 const handleMobileNavResize = ({ width, height }) => {
   const headerPaddingTop = Number(
     window.getComputedStyle($headerMain.value).paddingTop.slice(0, -2)
@@ -24,8 +24,43 @@ const handleMobileNavResize = ({ width, height }) => {
 };
 
 // ===========================================================================>
+// ===   Show Header on Upward Scroll Only   =================================>
+// ===========================================================================>
+
+const showHeader = ref(true);
+
+onMounted(() => {
+  const $illustration = document.querySelector(".hero__illustration");
+  const $heroText = document.querySelector(".hero__text");
+  const { y: windowY } = useWindowScroll();
+  const { y: illustrationTop } = useElementBounding($illustration);
+  const { y: heroTextTop } = useElementBounding($heroText);
+
+  watch(windowY, (newWindowY, prevWindowY) => {
+    // on desktop
+    if (window.innerWidth >= 1280) {
+      // still show header if hero text's top is still visible
+      if (heroTextTop.value > 0) return (showHeader.value = true);
+      // show header on upward scroll
+      return newWindowY < prevWindowY
+        ? (showHeader.value = true)
+        : (showHeader.value = false);
+    }
+
+    // on mobile
+    // still show header if illustration's top is still visible
+    if (illustrationTop.value > 0) return (showHeader.value = true);
+    // show header on upward scroll
+    return newWindowY < prevWindowY
+      ? (showHeader.value = true)
+      : (showHeader.value = false);
+  });
+});
+
+// ===========================================================================>
 // ===   Nav Border Animation   ==============================================>
 // ===========================================================================>
+
 const isNavScrolled = ref(undefined);
 
 onMounted(() => {
@@ -55,6 +90,7 @@ onMounted(() => {
       'header--blue-bg': background === 'blue',
       'header--active': isBurgerClicked === true,
       'header--scrolled': isNavScrolled,
+      'header--shown': showHeader,
     }"
     ref="$header"
   >
@@ -158,15 +194,20 @@ onMounted(() => {
 	width: 100%
 	border-bottom: solid 0px a.$v-accent-2
 	color: a.$v-accent-1
-	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1)
 	background-color: rgba(a.$v-accent-1, .64)
 	backdrop-filter: blur(32px)
+	transform: translateY(-100%)
+	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1), transform 640ms ease
 
 	&--active
 		padding-bottom: v-bind(headerActivePadding)
 
 	&--scrolled
 		border-bottom: solid 1px a.$v-accent-2
+
+	&--shown
+		transform: translateY(0%)
+
 
 	&__main
 		margin: auto
@@ -281,8 +322,6 @@ onMounted(() => {
 
 	.header__nav-mobile
 		animation-timing-function: linear
-
-
 
 @keyframes burger-1--active
 	0%
