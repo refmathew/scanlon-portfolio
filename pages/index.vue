@@ -13,6 +13,7 @@ const homeContent = useState("homeContent");
       <IndexSectionStatement />
       <IndexSectionServices />
       <IndexSectionTestimonials />
+      <IndexSectionWork />
     </div>
   </NuxtLayout>
 </template>
