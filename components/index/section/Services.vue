@@ -10,7 +10,6 @@ onMounted(() => {
   useRevealAnimation($servicesTitle.value, "reveal--below");
   const $services = $servicesMain.value.querySelectorAll(".services__service");
   $services.forEach(($service) => {
-    console.log($service);
     useRevealAnimation($service, "reveal--below");
   });
 });
