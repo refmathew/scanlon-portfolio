@@ -7,7 +7,6 @@ export default (
   const { revealPoint = 128, verticalOffset = 64 } = config || {};
 
   window.addEventListener("scroll", () => {
-    console.log(revealPoint, verticalOffset);
     let elTopOffset;
     // if there's a reference element, use it instead
     $reference
