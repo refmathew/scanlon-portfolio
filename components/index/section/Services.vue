@@ -117,13 +117,13 @@ onMounted(() => {
     }
   }
   &__service:nth-child(1) {
-    // transition-delay: 100ms;
+    transition-delay: 100ms;
   }
   &__service:nth-child(2) {
-    // transition-delay: 200ms;
+    transition-delay: 200ms;
   }
   &__service:nth-child(3) {
-    // transition-delay: 300ms;
+    transition-delay: 300ms;
   }
   &__service-icon {
     width: 6.4rem;
