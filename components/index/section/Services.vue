@@ -6,12 +6,20 @@ const $servicesMain = ref(null);
 const $servicesTitle = ref(null);
 
 onMounted(() => {
+  const $service1 = $servicesSection.value.querySelector(
+    ".services__service-1"
+  );
+  const $service2 = $servicesSection.value.querySelector(
+    ".services__service-2"
+  );
+  const $service3 = $servicesSection.value.querySelector(
+    ".services__service-3"
+  );
   useRevealAnimation($servicesSection.value, "reveal--below");
   useRevealAnimation($servicesTitle.value, "reveal--below");
-  const $services = $servicesMain.value.querySelectorAll(".services__service");
-  $services.forEach(($service) => {
-    useRevealAnimation($service, "reveal--below");
-  });
+  useRevealAnimation($service1, "reveal--below");
+  useRevealAnimation($service2, "reveal--below");
+  useRevealAnimation($service3, "reveal--below");
 });
 </script>
 
@@ -25,7 +33,10 @@ onMounted(() => {
         <div class="services__body" ref="$servicesMain">
           <div
             class="services__service hide--below"
-            v-for="service in homeContent?.services"
+            v-for="(service, index) in homeContent?.services"
+            :class="`services__service-${index + 1}`"
+            :key="index"
+            :ref="`$service${index + 1}`"
           >
             <img
               class="services__service-icon"
