@@ -23,6 +23,7 @@ const props = defineProps({
   border-radius: .4rem
   background-color: a.$v-primary
   color: a.$v-accent-1
+  white-space: nowrap
 
 .contact-button--blue
   background-color: a.$v-accent-1
