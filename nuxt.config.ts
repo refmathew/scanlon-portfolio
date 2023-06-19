@@ -4,4 +4,9 @@ import { dir } from "console";
 export default defineNuxtConfig({
   css: ["@/assets/styles/base/_index.scss"],
   dir: { static: "static" },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.startsWith("swiper-"),
+    },
+  },
 });
