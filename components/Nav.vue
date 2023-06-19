@@ -30,30 +30,16 @@ const handleMobileNavResize = ({ width, height }) => {
 const showHeader = ref(true);
 
 onMounted(() => {
-  const $illustration = document.querySelector(".hero__illustration");
-  const $heroText = document.querySelector(".hero__text");
+  const { height: headerHeight } = useElementBounding($header.value);
   const { y: windowY } = useWindowScroll();
-  const { y: illustrationTop } = useElementBounding($illustration);
-  const { y: heroTextTop } = useElementBounding($heroText);
-
   watch(windowY, (newWindowY, prevWindowY) => {
-    // on desktop
-    if (window.innerWidth >= 1280) {
-      // still show header if hero text's top is still visible
-      if (heroTextTop.value > 0) return (showHeader.value = true);
-      // show header on upward scroll
-      return newWindowY < prevWindowY
-        ? (showHeader.value = true)
-        : (showHeader.value = false);
-    }
+    //
+    if (headerHeight.value * 2 > windowY.value)
+      return (showHeader.value = true);
 
-    // on mobile
-    // still show header if illustration's top is still visible
-    if (illustrationTop.value > 0) return (showHeader.value = true);
-    // show header on upward scroll
-    return newWindowY < prevWindowY
-      ? (showHeader.value = true)
-      : (showHeader.value = false);
+    newWindowY > prevWindowY
+      ? (showHeader.value = false)
+      : (showHeader.value = true);
   });
 });
 
@@ -94,6 +80,7 @@ onMounted(() => {
     }"
     ref="$header"
   >
+    {{ y }}
     <div class="header__main sct" ref="$headerMain">
       <nuxt-link class="header__logo-wrapper" to="/">
         <img
