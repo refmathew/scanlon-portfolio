@@ -1,11 +1,4 @@
 <script setup>
-const props = defineProps({
-  background: {
-    type: String,
-    required: true,
-  },
-});
-
 const socials = [
   {
     name: "Email",
@@ -60,7 +53,7 @@ const sitemap = [
 <template>
   <section class="footer__container sct-ctr">
     <div class="footer sct">
-      <LayoutComponentLogo class="footer__logo" :background="background" />
+      <LayoutComponentLogo class="footer__logo" background="white" />
       <div class="footer__links-all">
         <div class="footer__contact">
           <div class="footer__contact-header">Interested to work with me?</div>
