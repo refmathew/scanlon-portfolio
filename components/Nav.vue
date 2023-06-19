@@ -3,7 +3,7 @@ import { vElementSize } from "@vueuse/components";
 import { useElementBounding, useWindowScroll } from "@vueuse/core";
 
 const props = defineProps({
-  background: String,
+	background: String,
 });
 
 const $header = ref(null);
@@ -17,10 +17,10 @@ const isBurgerClicked = ref(false);
 
 const headerActivePadding = ref("");
 const handleMobileNavResize = ({ width, height }) => {
-  const headerPaddingTop = Number(
-    window.getComputedStyle($headerMain.value).paddingTop.slice(0, -2)
-  );
-  headerActivePadding.value = `${height + headerPaddingTop}px`;
+	const headerPaddingTop = Number(
+		window.getComputedStyle($headerMain.value).paddingTop.slice(0, -2)
+	);
+	headerActivePadding.value = `${height + headerPaddingTop}px`;
 };
 
 // ===========================================================================>
@@ -30,145 +30,135 @@ const handleMobileNavResize = ({ width, height }) => {
 const showHeader = ref(true);
 
 onMounted(() => {
-  const { height: headerHeight } = useElementBounding($header.value);
-  const { y: windowY } = useWindowScroll();
-  watch(windowY, (newWindowY, prevWindowY) => {
-    //
-    if (headerHeight.value * 2 > windowY.value)
-      return (showHeader.value = true);
+	const { height: headerHeight } = useElementBounding($header.value);
+	const { y: windowY } = useWindowScroll();
+	watch(windowY, (newWindowY, prevWindowY) => {
+		if (headerHeight.value * 2 > windowY.value)
+			return (showHeader.value = true);
 
-    newWindowY > prevWindowY
-      ? (showHeader.value = false)
-      : (showHeader.value = true);
-  });
+		newWindowY > prevWindowY
+			? (showHeader.value = false)
+			: (showHeader.value = true);
+	});
 });
 
 // ===========================================================================>
-// ===   Nav Border Animation   ==============================================>
+// ===   Header Bottom Border   ================================================>
 // ===========================================================================>
+// show header bottom border only when y scroll is relatively small
 
-const isNavScrolled = ref(undefined);
-
+const showBorder = ref(false);
 onMounted(() => {
-  const $illustration = document.querySelector(".hero__illustration");
-  const $heroText = document.querySelector(".hero__text");
-
-  window.addEventListener("scroll", () => {
-    if (window.innerWidth > 1280) {
-      $header.value.getBoundingClientRect().bottom >=
-      $heroText.getBoundingClientRect().top
-        ? (isNavScrolled.value = true)
-        : (isNavScrolled.value = false);
-    }
-
-    $header.value.getBoundingClientRect().bottom >=
-    $illustration.getBoundingClientRect().top
-      ? (isNavScrolled.value = true)
-      : (isNavScrolled.value = false);
-  });
+	const { y: windowY } = useWindowScroll();
+	const { height: headerHeight } = useElementBounding($header.value);
+	watch(windowY, (newWindowY) => {
+		newWindowY > headerHeight.value * 1.5
+			? (showBorder.value = true)
+			: (showBorder.value = false);
+	});
 });
 </script>
 
 <template>
-  <header
-    class="header"
-    :class="{
-      'header--blue-bg': background === 'blue',
-      'header--active': isBurgerClicked === true,
-      'header--scrolled': isNavScrolled,
-      'header--shown': showHeader,
-    }"
-    ref="$header"
-  >
-    {{ y }}
-    <div class="header__main sct" ref="$headerMain">
-      <nuxt-link class="header__logo-wrapper" to="/">
-        <img
-          class="header__logo"
-          v-if="props.background === 'blue'"
-          src="@/assets/img/brand--white.svg"
-        />
-        <img class="header__logo" v-else src="@/assets/img/brand--blue.svg" />
-        <span class="header__logo-name"> John Scanlon </span>
-      </nuxt-link>
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-list-item">
-            <nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
-          </li>
-          <li class="header__nav-list-item">
-            <nuxt-link class="header__nav-link" to="/#services">
-              Services
-            </nuxt-link>
-          </li>
-          <li class="header__nav-list-item">
-            <nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
-          </li>
-          <li class="header__nav-list-item">
-            <nuxt-link class="header__nav-link" to="/#testimonials">
-              Testimonials
-            </nuxt-link>
-          </li>
-          <li class="header__nav-list-item">
-            <nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
-          </li>
-          <li class="header__nav-list-item">
-            <nuxt-link class="header__nav-link" to="/contact">
-              Contact
-            </nuxt-link>
-          </li>
-        </ul>
-      </nav>
-      <ContactButton class="header__contact-button" background="white" />
-      <button
-        class="header__burger"
-        :class="{ 'header__burger--inactive': isBurgerClicked === false }"
-        @click.prevent="isBurgerClicked = !isBurgerClicked"
-      >
-        <span class="header__burger-line"></span>
-        <span class="header__burger-line"></span>
-        <span class="header__burger-line"></span>
-      </button>
-    </div>
+	<header
+		class="header"
+		:class="{
+			'header--blue-bg': background === 'blue',
+			'header--active': isBurgerClicked === true,
+			'header--shown': showHeader,
+			'header--border-shown': showBorder,
+		}"
+		ref="$header"
+	>
+		{{ y }}
+		<div class="header__main sct" ref="$headerMain">
+			<nuxt-link class="header__logo-wrapper" to="/">
+				<img
+					class="header__logo"
+					v-if="props.background === 'blue'"
+					src="@/assets/img/brand--white.svg"
+				/>
+				<img class="header__logo" v-else src="@/assets/img/brand--blue.svg" />
+				<span class="header__logo-name"> John Scanlon </span>
+			</nuxt-link>
+			<nav class="header__nav">
+				<ul class="header__nav-list">
+					<li class="header__nav-list-item">
+						<nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
+					</li>
+					<li class="header__nav-list-item">
+						<nuxt-link class="header__nav-link" to="/#services">
+							Services
+						</nuxt-link>
+					</li>
+					<li class="header__nav-list-item">
+						<nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
+					</li>
+					<li class="header__nav-list-item">
+						<nuxt-link class="header__nav-link" to="/#testimonials">
+							Testimonials
+						</nuxt-link>
+					</li>
+					<li class="header__nav-list-item">
+						<nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
+					</li>
+					<li class="header__nav-list-item">
+						<nuxt-link class="header__nav-link" to="/contact">
+							Contact
+						</nuxt-link>
+					</li>
+				</ul>
+			</nav>
+			<ContactButton class="header__contact-button" background="white" />
+			<button
+				class="header__burger"
+				:class="{ 'header__burger--inactive': isBurgerClicked === false }"
+				@click.prevent="isBurgerClicked = !isBurgerClicked"
+			>
+				<span class="header__burger-line"></span>
+				<span class="header__burger-line"></span>
+				<span class="header__burger-line"></span>
+			</button>
+		</div>
 
-    <!-- The nav to use when on smaller screens -->
-    <nav
-      class="header__nav header__nav-mobile"
-      :class="{
-        'header__nav-mobile--active': isBurgerClicked,
-        'header__nav-mobile--inactive': isBurgerClicked === false,
-      }"
-      ref="$mobileNav"
-      v-element-size="handleMobileNavResize"
-    >
-      <ul class="header__nav-list">
-        <li class="header__nav-list-item">
-          <nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
-        </li>
-        <li class="header__nav-list-item">
-          <nuxt-link class="header__nav-link" to="/#services">
-            Services
-          </nuxt-link>
-        </li>
-        <li class="header__nav-list-item">
-          <nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
-        </li>
-        <li class="header__nav-list-item">
-          <nuxt-link class="header__nav-link" to="/#testimonials">
-            Testimonials
-          </nuxt-link>
-        </li>
-        <li class="header__nav-list-item">
-          <nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
-        </li>
-        <li class="header__nav-list-item">
-          <nuxt-link class="header__nav-link" to="/contact">
-            Contact
-          </nuxt-link>
-        </li>
-      </ul>
-    </nav>
-  </header>
+		<!-- The nav to use when on smaller screens -->
+		<nav
+			class="header__nav header__nav-mobile"
+			:class="{
+				'header__nav-mobile--active': isBurgerClicked,
+				'header__nav-mobile--inactive': isBurgerClicked === false,
+			}"
+			ref="$mobileNav"
+			v-element-size="handleMobileNavResize"
+		>
+			<ul class="header__nav-list">
+				<li class="header__nav-list-item">
+					<nuxt-link class="header__nav-link" to="/about"> About </nuxt-link>
+				</li>
+				<li class="header__nav-list-item">
+					<nuxt-link class="header__nav-link" to="/#services">
+						Services
+					</nuxt-link>
+				</li>
+				<li class="header__nav-list-item">
+					<nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
+				</li>
+				<li class="header__nav-list-item">
+					<nuxt-link class="header__nav-link" to="/#testimonials">
+						Testimonials
+					</nuxt-link>
+				</li>
+				<li class="header__nav-list-item">
+					<nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
+				</li>
+				<li class="header__nav-list-item">
+					<nuxt-link class="header__nav-link" to="/contact">
+						Contact
+					</nuxt-link>
+				</li>
+			</ul>
+		</nav>
+	</header>
 </template>
 
 <style lang="sass" scoped>
@@ -188,14 +178,11 @@ onMounted(() => {
 
 	&--active
 		padding-bottom: v-bind(headerActivePadding)
-
-	&--scrolled
-		border-bottom: solid 1px a.$v-accent-2
-
+	&--border-shown
+		border-bottom: solid .0
+		2rem a.$v-accent-2
 	&--shown
 		transform: translateY(0%)
-
-
 	&__main
 		margin: auto
 		padding: a.f-clampify(24, 32) a.f-clampify(20, 126)
@@ -357,20 +344,4 @@ onMounted(() => {
 		transform: translateY(-.6rem) rotate(0)
 	100%
 		transform: translateY(0) rotate(0)
-
-// @keyframes nav-mobile--active
-// 	0%
-// 		transform: translateY(-256%)
-// 		opacity: 0
-// 	100%
-// 		transform: translateY(0)
-// 		opacity: 1
-
-// @keyframes nav-mobile--inactive
-// 	0%
-// 		transform: translateY(0)
-// 		opacity: 1
-// 	100%
-// 		transform: translateY(-256%)
-// 		opacity: 0
 </style>
