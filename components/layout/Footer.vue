@@ -28,7 +28,7 @@ const socials = [
 const sitemap = [
   {
     name: "Home",
-    address: "/#",
+    address: "/",
   },
   {
     name: "About",
