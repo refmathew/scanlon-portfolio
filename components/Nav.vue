@@ -179,8 +179,7 @@ onMounted(() => {
 	&--active
 		padding-bottom: v-bind(headerActivePadding)
 	&--border-shown
-		border-bottom: solid .0
-		2rem a.$v-accent-2
+		border-bottom: solid .02rem a.$v-accent-2
 	&--shown
 		transform: translateY(0%)
 	&__main
