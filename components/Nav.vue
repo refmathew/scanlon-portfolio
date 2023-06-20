@@ -109,7 +109,10 @@ onMounted(() => {
 					</li>
 				</ul>
 			</nav>
-			<ContactButton class="header__contact-button" background="white" />
+			<ContactButton
+				class="header__contact-button"
+				:background="background === 'blue' ? 'white' : 'blue'"
+			/>
 			<button
 				class="header__burger"
 				:class="{ 'header__burger--inactive': isBurgerClicked === false }"
@@ -171,15 +174,15 @@ onMounted(() => {
 	width: 100%
 	border-bottom: solid 0px a.$v-accent-2
 	color: a.$v-accent-1
-	background-color: rgba(a.$v-accent-1, .64)
-	backdrop-filter: blur(32px)
+	background-color: rgba(white, .64)
+	backdrop-filter: blur(16px)
 	transform: translateY(-100%)
 	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1), transform 640ms ease
 
 	&--active
 		padding-bottom: v-bind(headerActivePadding)
 	&--border-shown
-		border-bottom: solid .02rem a.$v-accent-2
+		border-bottom: solid .02rem a.$v-secondary-6
 	&--shown
 		transform: translateY(0%)
 	&__main
@@ -287,6 +290,10 @@ onMounted(() => {
 
 .header--blue-bg
 	color: a.$v-primary
+	background-color: rgba(a.$v-accent-1, .64)
+
+	&.header--border-shown
+		border-bottom: solid .02rem a.$v-accent-2
 
 	.header__main
 
