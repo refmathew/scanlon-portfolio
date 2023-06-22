@@ -87,7 +87,7 @@ const sitemap = [
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	gap: 3.2rem;
+	gap: 6.4rem;
 	width: 100%;
 	padding: 12.8rem a.f-clampify(20, 128);
 	color: a.$v-accent-1;
