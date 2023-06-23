@@ -50,6 +50,9 @@ const blogMeta = ref(
 					/>
 				</div>
 			</section>
+			<div class="blog__section-divider-container">
+				<hr class="blog__section-divider" />
+			</div>
 		</main>
 	</NuxtLayout>
 </template>
@@ -97,7 +100,7 @@ const blogMeta = ref(
 
 .blog {
 	&__blog-roll-container {
-		padding: a.f-clampify(64, 128) a.f-clampify(20, 128) 0;
+		padding: a.f-clampify(64, 128) a.f-clampify(20, 128);
 	}
 	&__blog-roll-heading {
 		margin-bottom: 3.2rem;
@@ -173,7 +176,7 @@ const blogMeta = ref(
 		}
 		p {
 			margin-bottom: 1.6rem;
-			line-height: 2rem;
+			line-height: 3.2rem;
 		}
 		ul,
 		ol {
