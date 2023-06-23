@@ -1,6 +1,4 @@
 <script setup>
-import { format } from "date-fns";
-
 // ============================================================================>
 // ===   Blog Data   ============================================================>
 // ============================================================================>
@@ -15,27 +13,10 @@ const previousBlogs = ref(blogs.value.filter((blog, index) => index > 0));
 <template>
 	<div class="main__container sct-ctr">
 		<div class="main sct">
-			<NuxtLink class="main__featured-blog" :to="featuredBlog._path">
-				<img
-					class="main__featured-blog-feature-image"
-					:src="useAsset(`/img/blog/${featuredBlog.featureImage}`)"
-				/>
-				<div class="main__featured-blog-text">
-					<p
-						class="main__featured-blog-meta"
-						v-text="
-							`${format(new Date(featuredBlog.date), 'LLLL d, u')} • ${
-								featuredBlog.readTime
-							} min read`
-						"
-					/>
-					<p class="main__featured-blog-title" v-text="featuredBlog.title" />
-					<p
-						class="main__featured-blog-description"
-						v-text="featuredBlog.description"
-					/>
-				</div>
-			</NuxtLink>
+			<BlogComponentFeaturedBlogCard
+				class="main__featured-blog"
+				:featured-blog="featuredBlog"
+			/>
 			<div class="main__blog-card-grid">
 				<BlogComponentBlogCard v-for="blog in previousBlogs" :blog="blog" />
 			</div>
@@ -52,43 +33,9 @@ const previousBlogs = ref(blogs.value.filter((blog, index) => index > 0));
 	padding: a.f-clampify(148, 250) a.f-clampify(20, 128) a.f-clampify(64, 128);
 
 	&__featured-blog {
-		display: flex;
-		flex-direction: column;
-		gap: 3.2rem;
-		margin-bottom: 12.8rem;
-		@include a.m-for-size(tablet) {
-			flex-direction: row;
-			align-items: center;
-			& > * {
-				flex: 1;
-			}
-		}
-
-		&-feature-image {
-			width: 100%;
-			height: a.f-clampify(204, 366);
-			object-fit: cover;
-			border-radius: 1.6rem;
-		}
-		&-text {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-			padding: 1.2rem 0;
-		}
-		&-meta {
-			font-size: a.f-clampify(14, 16);
-			color: a.$v-secondary-5;
-			font-weight: 300;
-		}
-		&-title {
-			font-size: a.f-clampify(24, 32);
-		}
-		&-description {
-			font-size: a.f-clampify(16, 20);
-			font-weight: 300;
-		}
+		margin-bottom: a.f-clampify(64, 128);
 	}
+
 	&__blog-card-grid {
 		display: grid;
 		justify-items: center;
