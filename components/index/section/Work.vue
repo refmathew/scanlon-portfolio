@@ -36,7 +36,7 @@ const homeContent = useState("homeContent");
 	&__header-container {
 		position: relative;
 		width: fit-content;
-		margin-bottom: a.f-clampify(64, 128);
+		margin-bottom: a.f-clampify(32, 64);
 	}
 	&__header {
 		position: relative;
