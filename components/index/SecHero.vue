@@ -1,7 +1,4 @@
 <script setup>
-// import { vElementSize } from "@vueuse/components";
-// const homeContent = useState("homeContent");
-
 const brands = [
 	["coca-cola", "nike", "uniqlo", "pinterest", "microsoft"],
 	["adidas", "amazon", "reddit", "spotify", "prime-video"],
@@ -11,8 +8,10 @@ const brands = [
 <template>
 	<div class="hero-container sct-ctr">
 		<section class="hero sct">
-			<IndexCmpIllustration class="hero__illustration" />
-			<div class="hero__text">
+			<IndexCmpIllustration
+				class="hero__illustration from-right--hide from-right--reveal"
+			/>
+			<div class="hero__text from-left--hide from-left--reveal" ref="$heroText">
 				<h1 class="hero__title">Lorem ipsum dolor sit amet.</h1>
 				<div class="hero__subtitle">
 					<p>Lorem ipsum dolor sit amet consectetur.</p>
