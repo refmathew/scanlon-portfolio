@@ -6,6 +6,8 @@ const props = defineProps({
 	background: String,
 });
 
+const $route = useRoute();
+
 const $header = ref(null);
 const $headerMain = ref(null);
 const $mobileNav = ref(null);
@@ -67,10 +69,11 @@ onMounted(() => {
 			'header--active': isBurgerClicked === true,
 			'header--shown': showHeader,
 			'header--border-shown': showBorder,
+			'from-top--hide': $route.path === '/',
+			'from-top--reveal': $route.path === '/',
 		}"
 		ref="$header"
 	>
-		{{ y }}
 		<div class="header__main sct" ref="$headerMain">
 			<nuxt-link class="header__logo-wrapper" to="/">
 				<img
@@ -93,11 +96,6 @@ onMounted(() => {
 					</li>
 					<li class="header__nav-list-item">
 						<nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
-					</li>
-					<li class="header__nav-list-item">
-						<nuxt-link class="header__nav-link" to="/#testimonials">
-							Testimonials
-						</nuxt-link>
 					</li>
 					<li class="header__nav-list-item">
 						<nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
@@ -145,11 +143,6 @@ onMounted(() => {
 				</li>
 				<li class="header__nav-list-item">
 					<nuxt-link class="header__nav-link" to="/#work"> Work </nuxt-link>
-				</li>
-				<li class="header__nav-list-item">
-					<nuxt-link class="header__nav-link" to="/#testimonials">
-						Testimonials
-					</nuxt-link>
 				</li>
 				<li class="header__nav-list-item">
 					<nuxt-link class="header__nav-link" to="/blog"> Blog </nuxt-link>
