@@ -3,13 +3,23 @@ const homeContent = useState("homeContent");
 const $statementText = ref(null);
 const $statementBackground = ref(null);
 const $circle1 = ref(null);
+const $circle2 = ref(null);
+const $circle3 = ref(null);
+const $circle4 = ref(null);
+const $cross1 = ref(null);
+const $cross2 = ref(null);
+const $crescent = ref(null);
+const $ff = ref(null);
+const $crossMobile = ref(null);
+const $ffMobile = ref(null);
 
 onMounted(() => {
-	useRevealAnimation(
-		$statementBackground.value,
-		"reveal--transparent",
-		$circle1.value
-	);
+	const $graphics = [$circle3.value, $cross2.value];
+
+	$graphics.forEach(($graphic) => {
+		useRevealAnimation($graphic, "reveal--transparent", $statementText.value);
+	});
+	// useRevealAnimation( $statementBackground.value, "reveal--transparent", $statementText.value);
 	useRevealAnimation($statementText.value, "reveal--below");
 });
 </script>
@@ -18,45 +28,48 @@ onMounted(() => {
 	<section class="statement__container sct-ctr">
 		<div class="statement sct">
 			<div class="statement__main">
-				<div
-					class="statement__background hide--transparent"
-					ref="$statementBackground"
-				>
+				<div class="statement__background" ref="$statementBackground">
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic hide--transparent"
 						src="@/assets/img/statement/circle-3.svg"
 						alt=""
+						ref="$circle3"
 					/>
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic hide--transparent"
 						src="@/assets/img/statement/cross-2.svg"
 						alt=""
+						ref="$cross2"
 					/>
-					<img
+					<!-- <img
 						class="statement__background-graphic"
 						src="@/assets/img/statement/crescent.svg"
 						alt=""
+						ref="$crescent"
 					/>
 					<img
 						class="statement__background-graphic"
 						src="@/assets/img/statement/circle-4.svg"
 						alt=""
-						x
+						ref="$circle4"
 					/>
 					<img
 						class="statement__background-graphic"
 						src="@/assets/img/statement/ff.svg"
 						alt=""
+						ref="$ff"
 					/>
 					<img
 						class="statement__background-graphic"
 						src="@/assets/img/statement/cross-1.svg"
 						alt=""
+						ref="$cross1"
 					/>
 					<img
 						class="statement__background-graphic"
 						src="@/assets/img/statement/circle-2.svg"
 						alt=""
+						ref="$circle2"
 					/>
 					<img
 						class="statement__background-graphic"
@@ -68,12 +81,14 @@ onMounted(() => {
 						class="statement__background-graphic"
 						src="@/assets/img/statement/cross-mobile.svg"
 						alt=""
+						ref="$crossMobile"
 					/>
 					<img
 						class="statement__background-graphic"
 						src="@/assets/img/statement/ff-mobile.svg"
 						alt=""
-					/>
+						ref="$ffMobile"
+					/> -->
 				</div>
 				<div class="statement__text hide--below" ref="$statementText">
 					{{ homeContent?.statement }}
@@ -121,9 +136,11 @@ onMounted(() => {
 			display: inline-block;
 			top: -13%;
 			left: -14%;
+			transition-delay: 5000ms;
 		}
 
 		&:nth-child(2) {
+			transition-delay: 5000ms;
 		}
 
 		&:nth-child(3) {
