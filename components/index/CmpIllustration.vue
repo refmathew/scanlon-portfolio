@@ -1236,6 +1236,8 @@ $timing: cubic-bezier(0.4, -0.4, 0.6, 1.4);
 }
 
 .illustration-container {
+	display: grid;
+	place-items: center;
 	@include a.m-for-size(desktop) {
 		position: absolute;
 		bottom: 0;
