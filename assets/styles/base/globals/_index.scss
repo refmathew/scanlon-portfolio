@@ -1,36 +1,298 @@
 html {
-  scroll-behavior: smooth;
-  font-size: 62.5%;
+	scroll-behavior: smooth;
+	font-size: 62.5%;
 }
 body {
-  font-size: 1.6rem;
-  font-family: "Inter", sans-serif;
-  font-weight: 900;
+	font-size: 1.6rem;
+	font-family: "Inter", sans-serif;
+	font-weight: 900;
 }
 #__nuxt {
-  min-width: 36rem;
+	min-width: 36rem;
 }
 .sct-ctr {
-  width: 100%;
-  display: grid;
-  place-items: center;
+	width: 100%;
+	display: grid;
+	place-items: center;
 }
 .sct {
-  max-width: 144rem;
+	max-width: 144rem;
 }
 .hide--below {
-  transform: translateY(6.4rem) !important;
-  opacity: 0 !important;
-  transition: transform 400ms ease-out, opacity 400ms ease-out;
+	transform: translateY(6.4rem) !important;
+	opacity: 0 !important;
+	transition: transform 400ms ease-out, opacity 400ms ease-out;
 }
 .reveal--below {
-  transform: translateY(0) !important;
-  opacity: 1 !important;
+	transform: translateY(0) !important;
+	opacity: 1 !important;
 }
 .hide--transparent {
-  opacity: 0 !important;
-  transition: opacity 400ms ease-out;
+	opacity: 0 !important;
+	transition: opacity 400ms ease-out;
 }
 .reveal--transparent {
-  opacity: 1 !important;
+	opacity: 1 !important;
+}
+.hide--left {
+	transform: translateX(-6.4rem) !important;
+	opacity: 0 !important;
+	transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+.reveal--left {
+	transform: translateX(0) !important;
+	opacity: 1 !important;
+}
+.hide--top {
+	transform: translateY(-6.4rem) !important;
+	opacity: 0 !important;
+	transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+.reveal--top {
+	transform: translateY(0) !important;
+	opacity: 1 !important;
+}
+
+.animation-from-top--hidden {
+	transform: translateY(-6.4rem);
+	opacity: 0;
+}
+.animation-from-top--revealed {
+	animation: animate-from-top--revealed 400ms ease-out forwards;
+}
+@keyframes animate-from-top--revealed {
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.animation-from-right--hidden {
+	transform: translateX(6.4rem);
+	opacity: 0;
+}
+.animation-from-right--revealed {
+	animation: animate-from-right--revealed 400ms ease-out forwards;
+}
+@keyframes animate-from-right--revealed {
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.animation-from-bottom--hidden {
+	transform: translateY(6.4rem);
+	opacity: 0;
+}
+.animation-from-bottom--revealed {
+	animation: animate-from-bottom--revealed 400ms ease-out forwards;
+}
+@keyframes animate-from-bottom--revealed {
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.animation-from-left--hidden {
+	transform: translateX(-6.4rem);
+	opacity: 0;
+}
+.animation-from-left--revealed {
+	animation: animate-from-left--revealed 400ms ease-out forwards;
+}
+@keyframes animate-from-left--revealed {
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.animation-from-top-right--hidden {
+	transform: translate(6.4rem, -6.4rem);
+	opacity: 0;
+}
+.animation-from-top-right--revealed {
+	animation: animate-from-top-right--revealed 400ms ease-out forwards;
+}
+@keyframes animate-from-top-right--revealed {
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
+.animation-from-bottom-right--hidden {
+	transform: translate(6.4rem, 6.4rem);
+	opacity: 0;
+}
+.animation-from-bottom-right--revealed {
+	animation: animate-from-bottom-right--revealed 400ms ease-out forwards;
+}
+@keyframes animate-from-bottom-right--revealed {
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
+.animation-from-bottom-left--hidden {
+	transform: translate(-6.4rem, 6.4rem);
+	opacity: 0;
+}
+.animation-from-bottom-left--revealed {
+	animation: animate-from-bottom-left--revealed 400ms ease-out forwards;
+}
+@keyframes animate-from-bottom-left--revealed {
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
+.animation-from-top-left--hidden {
+	transform: translate(-6.4rem, -6.4rem);
+	opacity: 0;
+}
+.animation-from-top-left--revealed {
+	animation: animate-from-top-left--revealed 400ms ease-out forwards;
+}
+@keyframes animate-from-top-left--revealed {
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
+.animation-shrink--hidden {
+	width: 120%;
+	height: 120%;
+	opacity: 0;
+}
+.animation-shrink--revealed {
+	animation: animate-shrink--revealed 400ms ease-out forwards;
+}
+@keyframes animate-shrink--revealed {
+	0% {
+		width: 120%;
+		height: 120%;
+		opacity: 0;
+	}
+
+	100% {
+		width: 100%;
+		height: 100%;
+		opacity: 1;
+	}
+}
+
+.animation-shrink-x--hidden {
+	width: 120%;
+	opacity: 0;
+}
+.animation-shrink-x--revealed {
+	animation: animate-shrink-x--revealed 400ms ease-out forwards;
+}
+@keyframes animate-shrink-x--revealed {
+	100% {
+		width: 100%;
+		opacity: 1;
+	}
+}
+
+// Immediate reveal animations
+.from-top--hide {
+	transform: translateY(-6.4rem);
+	opacity: 0;
+}
+.from-top--reveal {
+	animation: from-top--reveal 800ms 2400ms forwards ease-out;
+}
+
+.from-bottom--hide {
+	transform: translateY(6.4rem);
+	opacity: 0;
+}
+.from-bottom--reveal {
+	animation: from-bottom--reveal 800ms 2400ms forwards ease-out;
+}
+
+.from-left--hide {
+	transform: translateX(-6.4rem);
+	opacity: 0;
+}
+.from-left--reveal {
+	animation: from-left--reveal 800ms 2400ms forwards ease-out;
+}
+
+.from-right--hide {
+	transform: translateX(6.4rem);
+	opacity: 0;
+}
+.from-right--reveal {
+	animation: from-right--reveal 800ms 2400ms forwards ease-out;
+}
+
+.from-bottom-right--hide {
+	transform: translate(6.4rem, 6.4rem);
+	opacity: 0;
+}
+.from-bottom-right--reveal {
+	animation: from-bottom-right--reveal 800ms 2400ms forwards ease-out;
+}
+
+@keyframes from-top--reveal {
+	0% {
+		opacity: 0;
+		transform: translateY(-6.4rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes from-bottom--reveal {
+	0% {
+		opacity: 0;
+		transform: translateY(6.4rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes from-left--reveal {
+	0% {
+		opacity: 0;
+		transform: translateX(-6.4rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes from-right--reveal {
+	0% {
+		opacity: 0;
+		transform: translateX(6.4rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes from-bottom-right--reveal {
+	0% {
+		opacity: 0;
+		transform: translate(6.4rem, 6.4rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
 }
