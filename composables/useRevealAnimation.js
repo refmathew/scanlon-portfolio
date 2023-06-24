@@ -1,20 +1,20 @@
 export default (
-  $el,
-  classToAdd,
-  $reference, // reveal relative to this reference element
-  config
+	$el,
+	classToAdd,
+	$reference, // reveal relative to this reference element
+	config
 ) => {
-  const { revealPoint = 128, verticalOffset = 64 } = config || {};
+	const { revealPoint = 128, verticalOffset = 64 } = config || {};
 
-  window.addEventListener("scroll", () => {
-    let elTopOffset;
-    // if there's a reference element, use it instead
-    $reference
-      ? (elTopOffset = $reference.getBoundingClientRect().top)
-      : (elTopOffset = $el.getBoundingClientRect().top);
+	window.addEventListener("scroll", () => {
+		let elTopOffset;
+		// if there's a reference element, use it instead
+		$reference
+			? (elTopOffset = $reference.getBoundingClientRect().top)
+			: (elTopOffset = $el.getBoundingClientRect().top);
 
-    elTopOffset <= window.innerHeight + verticalOffset - revealPoint
-      ? $el.classList.add(classToAdd)
-      : $el.classList.remove(classToAdd);
-  });
+		elTopOffset <= window.innerHeight + verticalOffset - revealPoint
+			? $el.classList.add(classToAdd)
+			: $el.classList.remove(classToAdd);
+	});
 };
