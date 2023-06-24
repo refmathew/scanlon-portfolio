@@ -6,12 +6,24 @@ const $servicesTitle = ref(null);
 const $servicesBody = ref(null);
 
 onMounted(() => {
-	useRevealAnimation($servicesTitle.value, "animation-from-top--revealed");
-
 	const $services = document.querySelectorAll(".services__service");
+
+	useRevealAnimation(
+		$servicesTitle.value,
+		"animation-from-top--revealed",
+		undefined,
+		{
+			revealPoint: 256,
+		}
+	);
+
 	$services.forEach(($service, index) => {
-		// $service.style.animationDelay = `${(index + 1) * 100}ms`;
-		useRevealAnimation($service, "animation-from-bottom--revealed");
+		useRevealAnimation(
+			$service,
+			"animation-from-bottom--revealed",
+			$servicesTitle.value,
+			{ revealPoint: 256 }
+		);
 	});
 });
 </script>
