@@ -2,74 +2,72 @@
 const homeContent = useState("homeContent");
 
 const $servicesSection = ref(null);
-const $servicesMain = ref(null);
 const $servicesTitle = ref(null);
+const $servicesBody = ref(null);
 
 onMounted(() => {
-	const $service1 = $servicesSection.value.querySelector(
-		".services__service-1"
-	);
-	const $service2 = $servicesSection.value.querySelector(
-		".services__service-2"
-	);
-	const $service3 = $servicesSection.value.querySelector(
-		".services__service-3"
-	);
-	useRevealAnimation($servicesSection.value, "reveal--below");
-	useRevealAnimation($servicesTitle.value, "reveal--below");
-	useRevealAnimation($service1, "reveal--below");
-	useRevealAnimation($service2, "reveal--below");
-	useRevealAnimation($service3, "reveal--below");
+	useRevealAnimation($servicesTitle.value, "animation-from-top--revealed");
+
+	const $services = document.querySelectorAll(".services__service");
+	$services.forEach(($service, index) => {
+		// $service.style.animationDelay = `${(index + 1) * 100}ms`;
+		useRevealAnimation($service, "animation-from-bottom--revealed");
+	});
 });
 </script>
 
 <template>
-	<section id="services" class="services__container sct-ctr">
-		<div class="services sct hide--below" ref="$servicesSection">
-			<div class="services__main">
-				<div class="services__title hide--below" ref="$servicesTitle">
-					What I bring to the table
-				</div>
-				<div class="services__body" ref="$servicesMain">
+	<section class="services__container sct-ctr" id="services">
+		<div class="services sct" ref="$servicesSection">
+			<div class="services__main-container">
+				<div class="services__main">
 					<div
-						class="services__service hide--below"
-						v-for="(service, index) in homeContent?.services"
-						:class="`services__service-${index + 1}`"
-						:key="index"
-						:ref="`$service${index + 1}`"
+						class="services__title animation-from-top--hidden"
+						ref="$servicesTitle"
 					>
-						<img
-							class="services__service-icon"
-							:src="useAsset(`/img/services/${service.icon}.svg`)"
-						/>
-						<div class="services__service-title">{{ service.title }}</div>
-						<div class="services__service-definition">
-							{{ service.definition }}
+						What I bring to the table
+					</div>
+					<div class="services__body" ref="$servicesBody">
+						<div
+							class="services__service animation-from-bottom--hidden"
+							v-for="(service, index) in homeContent?.services"
+							:class="`services__service-${index + 1}`"
+							:key="index"
+							:ref="`$service${index + 1}`"
+						>
+							<img
+								class="services__service-icon"
+								:src="useAsset(`/img/services/${service.icon}.svg`)"
+							/>
+							<div class="services__service-title">{{ service.title }}</div>
+							<div class="services__service-definition">
+								{{ service.definition }}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="services__background">
-				<img
-					class="services__background-graphic"
-					:src="useAsset(`/img/services/${'bg-graphic-1'}.svg`)"
-					alt=""
-				/>
-				<img
-					class="services__background-graphic"
-					:src="useAsset(`/img/services/${'bg-graphic-2'}.svg`)"
-					alt=""
-				/>
-				<img
-					class="services__background-graphic"
-					:src="useAsset(`/img/services/${'bg-graphic-3'}.svg`)"
-					alt=""
-				/>
-				<img
-					class="services__background-graphic"
-					:src="useAsset(`/img/services/${'bg-graphic-4'}.svg`)"
-					alt=""
-				/>
+				<div class="services__background">
+					<img
+						class="services__background-graphic"
+						:src="useAsset(`/img/services/${'bg-graphic-1'}.svg`)"
+						alt=""
+					/>
+					<img
+						class="services__background-graphic"
+						:src="useAsset(`/img/services/${'bg-graphic-2'}.svg`)"
+						alt=""
+					/>
+					<img
+						class="services__background-graphic"
+						:src="useAsset(`/img/services/${'bg-graphic-3'}.svg`)"
+						alt=""
+					/>
+					<img
+						class="services__background-graphic"
+						:src="useAsset(`/img/services/${'bg-graphic-4'}.svg`)"
+						alt=""
+					/>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -83,14 +81,17 @@ onMounted(() => {
 }
 
 .services {
-	position: relative;
-	background-color: a.$v-accent-1;
-	margin: 0 a.f-clampify(20, 128);
-	padding: 12.8rem a.f-clampify(20, 128);
-	overflow: hidden;
-	box-shadow: -0.1rem 0.4rem 1.6rem 0.4rem rgba(0, 0, 0, 0.25);
-	border-radius: 1.6rem;
-	text-align: center;
+	padding: 0 a.f-clampify(20, 128);
+
+	&__main-container {
+		position: relative;
+		background-color: a.$v-accent-1;
+		padding: 12.8rem a.f-clampify(20, 128) 6.4rem;
+		overflow: hidden;
+		box-shadow: -0.1rem 0.4rem 1.6rem 0.4rem rgba(0, 0, 0, 0.25);
+		border-radius: 1.6rem;
+		text-align: center;
+	}
 
 	&__main {
 		position: relative;
@@ -128,13 +129,13 @@ onMounted(() => {
 		}
 	}
 	&__service:nth-child(1) {
-		transition-delay: 100ms;
+		// transition-delay: 100ms;
 	}
 	&__service:nth-child(2) {
-		transition-delay: 200ms;
+		// transition-delay: 200ms;
 	}
 	&__service:nth-child(3) {
-		transition-delay: 300ms;
+		// transition-delay: 300ms;
 	}
 	&__service-icon {
 		width: 6.4rem;
