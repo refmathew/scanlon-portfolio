@@ -4,6 +4,7 @@ export default (
 	$reference, // reveal relative to this reference element
 	config
 ) => {
+	// Vertical offset is for the elements who are animationg
 	const { revealPoint = 128, verticalOffset = 64 } = config || {};
 
 	window.addEventListener("scroll", () => {
@@ -13,8 +14,12 @@ export default (
 			? (elTopOffset = $reference.getBoundingClientRect().top)
 			: (elTopOffset = $el.getBoundingClientRect().top);
 
-		elTopOffset <= window.innerHeight + verticalOffset - revealPoint
-			? $el.classList.add(classToAdd)
-			: $el.classList.remove(classToAdd);
+		if (elTopOffset <= window.innerHeight + verticalOffset - revealPoint) {
+			return $el.classList.add(classToAdd);
+		}
+
+		if (elTopOffset > window.innerHeight) {
+			return $el.classList.remove(classToAdd);
+		}
 	});
 };
