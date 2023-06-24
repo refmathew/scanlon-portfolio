@@ -13,14 +13,61 @@ const $ff = ref(null);
 const $crossMobile = ref(null);
 const $ffMobile = ref(null);
 
+// Reveal animations
 onMounted(() => {
-	const $graphics = [$circle3.value, $cross2.value];
-
-	$graphics.forEach(($graphic) => {
-		useRevealAnimation($graphic, "reveal--transparent", $statementText.value);
-	});
-	// useRevealAnimation( $statementBackground.value, "reveal--transparent", $statementText.value);
 	useRevealAnimation($statementText.value, "reveal--below");
+	useRevealAnimation(
+		$circle3.value,
+		"animation-from-top-left--revealed",
+		$statementText.value
+	);
+	useRevealAnimation(
+		$cross2.value,
+		"animation-from-top--revealed",
+		$statementText.value
+	);
+	useRevealAnimation(
+		$crescent.value,
+		"animation-from-right--revealed",
+		$statementText.value
+	);
+	useRevealAnimation(
+		$circle4.value,
+		"animation-from-bottom-right--revealed",
+		$statementText.value
+	);
+	useRevealAnimation(
+		$ff.value,
+		"animation-from-bottom-right--revealed",
+		$statementText.value
+	);
+	useRevealAnimation(
+		$cross1.value,
+		"animation-from-bottom-left--revealed",
+		$statementText.value
+	);
+	useRevealAnimation(
+		$circle2.value,
+		"animation-from-bottom-left--revealed",
+		$statementText.value
+	);
+	useRevealAnimation(
+		$circle1.value,
+		"animation-from-top-left--revealed",
+		$statementText.value
+	);
+
+	// Background graphics on mobile
+	useRevealAnimation(
+		$crossMobile.value,
+		"animation-from-bottom-left--revealed",
+		$statementText.value
+	);
+	useRevealAnimation(
+		$ffMobile.value,
+		"animation-from-top-right--revealed",
+		$statementText.value
+	);
 });
 </script>
 
@@ -30,65 +77,65 @@ onMounted(() => {
 			<div class="statement__main">
 				<div class="statement__background" ref="$statementBackground">
 					<img
-						class="statement__background-graphic hide--transparent"
+						class="statement__background-graphic animation-from-top-left--hidden"
 						src="@/assets/img/statement/circle-3.svg"
 						alt=""
 						ref="$circle3"
 					/>
 					<img
-						class="statement__background-graphic hide--transparent"
+						class="statement__background-graphic animation-from-top--hidden"
 						src="@/assets/img/statement/cross-2.svg"
 						alt=""
 						ref="$cross2"
 					/>
-					<!-- <img
-						class="statement__background-graphic"
+					<img
+						class="statement__background-graphic animation-from-right--hidden"
 						src="@/assets/img/statement/crescent.svg"
 						alt=""
 						ref="$crescent"
 					/>
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic animation-from-bottom-right--hidden"
 						src="@/assets/img/statement/circle-4.svg"
 						alt=""
 						ref="$circle4"
 					/>
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic animation-from-bottom-right--hidden"
 						src="@/assets/img/statement/ff.svg"
 						alt=""
 						ref="$ff"
 					/>
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic animation-from-bottom-left--hidden"
 						src="@/assets/img/statement/cross-1.svg"
 						alt=""
 						ref="$cross1"
 					/>
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic animation-from-bottom-left--hidden"
 						src="@/assets/img/statement/circle-2.svg"
 						alt=""
 						ref="$circle2"
 					/>
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic animation-from-top-left--hidden"
 						src="@/assets/img/statement/circle-1.svg"
 						alt=""
 						ref="$circle1"
 					/>
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic animation-from-bottom-left--hidden"
 						src="@/assets/img/statement/cross-mobile.svg"
 						alt=""
 						ref="$crossMobile"
 					/>
 					<img
-						class="statement__background-graphic"
+						class="statement__background-graphic animation-from-top-right--hidden"
 						src="@/assets/img/statement/ff-mobile.svg"
 						alt=""
 						ref="$ffMobile"
-					/> -->
+					/>
 				</div>
 				<div class="statement__text hide--below" ref="$statementText">
 					{{ homeContent?.statement }}
@@ -131,16 +178,17 @@ onMounted(() => {
 	&__background-graphic {
 		position: absolute;
 		display: none;
+		// animation-delay: 400ms;
 
 		&:nth-child(1) {
 			display: inline-block;
 			top: -13%;
 			left: -14%;
-			transition-delay: 5000ms;
+			// transition-delay: 0.1s;
 		}
 
 		&:nth-child(2) {
-			transition-delay: 5000ms;
+			// transition-delay: 0.2s;
 		}
 
 		&:nth-child(3) {
