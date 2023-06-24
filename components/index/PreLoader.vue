@@ -1,51 +1,62 @@
 <script setup></script>
 
 <template>
-	<div class="preloader">
-		<img class="logo" src="@/assets/img/brand--blue.svg" />
+	<div class="preloader sct-ctr">
+		<img class="logo" src="@/assets/img/brand--white.svg" />
 	</div>
 </template>
 
 <style scoped lang="scss">
 @use "@/assets/styles/abstracts" as a;
-$logoAniDur: 512ms;
-$logoAniDel: 256ms;
+$logoAniDur: 2000ms;
+$logoAniDel: 400ms;
 
 .preloader {
-	position: absolute;
+	position: fixed;
 	z-index: 999;
-	display: grid;
-	place-items: center;
+	top: 0;
+	left: 0;
 	padding: 14rem;
-	min-width: 100%;
+	max-width: 100%;
 	min-height: 100vh;
-	background-color: a.$v-primary;
-	animation: backgroundAnimation calc(2000ms - ($logoAniDur + $logoAniDel))
+	background-color: a.$v-accent-1;
+	// transform: translateX(-50%);
+	animation: backgroundAnimation calc(3200ms - ($logoAniDur + $logoAniDel))
 		calc($logoAniDur + $logoAniDel) forwards ease-out;
 }
 
 .logo {
 	width: 6.4rem;
-	animation: logoAnimation $logoAniDur $logoAniDel forwards ease;
+	opacity: 0;
+	animation: logoAnimation $logoAniDur $logoAniDel forwards ease-out;
 }
 
 @keyframes logoAnimation {
 	0% {
-		transform: scale(1);
+		opacity: 0;
+		transform: translateY(6.4rem);
+	}
+	40% {
 		opacity: 1;
+		transform: translateY(0);
+	}
+	70% {
+		opacity: 1;
+		transform: translateY(0);
 	}
 	100% {
-		transform: scale(0);
 		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
 @keyframes backgroundAnimation {
-	0% {
-		transform: translateY(0);
+	99.9% {
+		opacity: 0;
 	}
 	100% {
-		transform: translateY(-100%);
+		opacity: 0;
+		z-index: -1;
 	}
 }
 </style>
