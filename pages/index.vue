@@ -23,5 +23,6 @@ const homeContent = useState("homeContent");
 .home-page {
 	background-color: a.$v-accent-1;
 	color: a.$v-primary;
+	overflow-x: hidden;
 }
 </style>
