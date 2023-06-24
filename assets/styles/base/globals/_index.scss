@@ -165,6 +165,18 @@ body {
 	}
 }
 
+.animation-opacity--hidden {
+	opacity: 0;
+}
+.animation-opacity--revealed {
+	animation: animate-opacity--revealed 400ms ease-out forwards;
+}
+@keyframes animate-opacity--revealed {
+	100% {
+		opacity: 1;
+	}
+}
+
 .animation-shrink--hidden {
 	width: 120%;
 	height: 120%;
