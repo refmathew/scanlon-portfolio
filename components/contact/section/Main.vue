@@ -231,6 +231,7 @@ const handleFormSubmit = async () => {
 		padding: 1.2rem 2rem;
 		background-color: a.$v-accent-1;
 		border-radius: 0.4rem;
+		cursor: pointer;
 	}
 }
 </style>

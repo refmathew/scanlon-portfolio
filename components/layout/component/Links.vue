@@ -75,6 +75,49 @@ onMounted(() => {
 		}
 	}
 	&__list-item {
+		position: relative;
+		transition: color 200ms ease-in-out, transform 200ms ease-in-out;
+
+		&:hover {
+			transform: translateX(0.4rem);
+			color: a.$v-accent-1;
+		}
+
+		// &::before {
+		// 	content: "";
+		// 	position: absolute;
+		// 	top: 0;
+		// 	right: 0;
+		// 	width: 100%;
+		// 	height: 0.2rem;
+		// 	background-color: a.$v-accent-1;
+		// 	opacity: 0;
+		// 	transform: translateY(-0.8rem);
+		// 	transition: transform 320ms ease-in-out, opacity 320ms ease-in-out;
+		// }
+
+		// &:hover::before {
+		// 	opacity: 1;
+		// 	transform: translateY(-0.4rem);
+		// }
+
+		// &::after {
+		// 	content: "";
+		// 	position: absolute;
+		// 	bottom: 0;
+		// 	right: 0;
+		// 	width: 100%;
+		// 	height: 0.2rem;
+		// 	background-color: a.$v-accent-1;
+		// 	opacity: 0;
+		// 	transform: translateY(0.8rem);
+		// 	transition: transform 320ms ease-in-out, opacity 320ms ease-in-out;
+		// }
+
+		// &:hover::after {
+		// 	opacity: 1;
+		// 	transform: translateY(0.4rem);
+		// }
 	}
 }
 </style>

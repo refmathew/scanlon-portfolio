@@ -207,6 +207,12 @@ onMounted(() => {
 		@include a.m-flex($dir: row)
 		font-weight: 500
 
+	&__nav-list-item
+		transition: transform 200ms ease-in-out
+
+		&:hover,&:focus
+			transform: translateY(-.32rem)
+
 	// ==========================================================================>
 
 	&__burger
