@@ -36,9 +36,6 @@ onMounted(() => {
 	);
 });
 const $route = useRoute();
-onMounted(() => {
-	console.log($route.hash);
-});
 </script>
 
 <template>

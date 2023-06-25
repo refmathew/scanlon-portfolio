@@ -4,6 +4,10 @@ const email = ref("");
 const subject = ref("");
 const message = ref("");
 
+// ============================================================================>
+// ===   Input animation   ======================================================>
+// ============================================================================>
+
 const handleInputFocus = (e) => {
 	e.target.parentElement.classList.add("main__form-input-container--focused");
 };
@@ -11,6 +15,39 @@ const handleInputBlur = (e) => {
 	e.target.parentElement.classList.remove(
 		"main__form-input-container--focused"
 	);
+};
+
+// ============================================================================>
+// ===   Form submission   ======================================================>
+// ============================================================================>
+
+const WEB3FORMS_ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY;
+const handleFormSubmit = async () => {
+	const response = await fetch("https://api.web3forms.com/submit", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		body: JSON.stringify({
+			access_key: WEB3FORMS_ACCESS_KEY,
+			name: name.value,
+			email: email.value,
+			subject: subject.value,
+			message: message.value,
+		}),
+	});
+	const result = await response.json();
+
+	// clear input
+	name.value = "";
+	email.value = "";
+	subject.value = "";
+	message.value = "";
+
+	if (result.success) {
+		console.log(result);
+	}
 };
 </script>
 
@@ -24,7 +61,7 @@ const handleInputBlur = (e) => {
 					more, get in touch and let’s get things moving.
 				</div>
 			</div>
-			<form class="main__form" @submit.prevent="submitForm">
+			<form class="main__form" @submit.prevent="handleFormSubmit">
 				<div class="main__form-group-1">
 					<div
 						class="main__form-input-container main__form-input-container-group-1"
