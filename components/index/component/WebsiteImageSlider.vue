@@ -26,12 +26,30 @@ onMounted(() => {
 		$companySwiper.slideTo(newActiveIndex);
 	});
 });
+
+// ============================================================================>
+// ===   Reveal animation   =====================================================>
+// ============================================================================>
+onMounted(() => {
+	useRevealAnimation(
+		$companySlider.value,
+		"animation-from-top--revealed",
+		$imageSlider.value,
+		{ revealPoint: 256 }
+	);
+	useRevealAnimation(
+		$imageSlider.value,
+		"animation-from-bottom--revealed",
+		undefined,
+		{ revealPoint: 256 }
+	);
+});
 </script>
 
 <template>
 	<div class="website-slider">
 		<swiper-container
-			class="website-slider__company-slider"
+			class="website-slider__company-slider animation-from-top--hidden"
 			ref="$companySlider"
 			:centered-slides="true"
 			:grab-cursor="true"
@@ -50,7 +68,7 @@ onMounted(() => {
 			</swiper-slide>
 		</swiper-container>
 		<swiper-container
-			class="website-slider__image-slider"
+			class="website-slider__image-slider animation-from-bottom--hidden"
 			ref="$imageSlider"
 			:autoplay="{ delay: 3200 }"
 			:centered-slides="true"

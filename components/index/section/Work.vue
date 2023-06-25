@@ -1,21 +1,81 @@
 <script setup>
-const homeContent = useState("homeContent");
+const $header = ref(null);
+const $abstract1 = ref(null);
+const $abstract2 = ref(null);
+const $abstract3 = ref(null);
+const $abstract4 = ref(null);
+const $abstract5 = ref(null);
+
+// Reveal animation
+onMounted(() => {
+	useRevealAnimation($header.value, "animation-from-bottom--revealed");
+	useRevealAnimation(
+		$abstract1.value,
+		"animation-from-top--revealed",
+		$header.value
+	);
+	useRevealAnimation(
+		$abstract2.value,
+		"animation-from-top-right--revealed",
+		$header.value
+	);
+	useRevealAnimation(
+		$abstract3.value,
+		"animation-from-bottom-right--revealed",
+		$header.value
+	);
+	useRevealAnimation(
+		$abstract4.value,
+		"animation-from-bottom-left--revealed",
+		$header.value
+	);
+	useRevealAnimation(
+		$abstract5.value,
+		"animation-from-bottom-left--revealed",
+		$header.value
+	);
+});
 </script>
 
 <template>
 	<section id="work" class="work-container sct-ctr">
 		<div class="work sct">
 			<div class="work__header-container">
-				<p class="work__header">
+				<p class="work__header animation-from-bottom--hidden" ref="$header">
 					Projects I've <br />
 					worked on
 				</p>
 				<div class="work__header-abstract">
-					<img :src="useAsset('/img/work/abstract/star-1.svg')" alt="" />
-					<img :src="useAsset('/img/work/abstract/square.svg')" alt="" />
-					<img :src="useAsset('/img/work/abstract/star-2.svg')" alt="" />
-					<img :src="useAsset('/img/work/abstract/star-3.svg')" alt="" />
-					<img :src="useAsset('/img/work/abstract/circle.svg')" alt="" />
+					<img
+						class="animation-from-top--hidden"
+						:src="useAsset('/img/work/abstract/square.svg')"
+						alt=""
+						ref="$abstract1"
+					/>
+					<img
+						class="animation-from-top-right--hidden"
+						:src="useAsset('/img/work/abstract/star-2.svg')"
+						alt=""
+						ref="$abstract2"
+					/>
+					<img
+						class="animation-from-bottom-right--hidden"
+						:src="useAsset('/img/work/abstract/star-3.svg')"
+						alt=""
+						ref="$abstract3"
+					/>
+					<img
+						class="animation-from-bottom-left--hidden"
+						:src="useAsset('/img/work/abstract/star-1.svg')"
+						alt=""
+						ref="$abstract4"
+					/>
+					<img
+						class="animation-from-bottom-left--hidden"
+						:src="useAsset('/img/work/abstract/circle.svg')"
+						alt=""
+						ref="$abstract5"
+					/>
 				</div>
 			</div>
 			<IndexComponentWebsiteImageSlider />
