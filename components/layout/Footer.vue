@@ -1,4 +1,5 @@
 <script setup>
+import { useWindowSize } from "@vueuse/core";
 const socials = [
 	{
 		name: "Email",
@@ -48,14 +49,96 @@ const sitemap = [
 		address: "/contact",
 	},
 ];
+
+// ============================================================================>
+// ===   Reveal animation   =====================================================>
+// ============================================================================>
+
+const $footer = ref(null);
+const $footerContact = ref(null);
+const isFooterLogoMounted = ref(false);
+const { width: windowWidth } = useWindowSize();
+const isDesktop = ref(null);
+onMounted(() => {
+	windowWidth.value > 1280
+		? (isDesktop.value = true)
+		: (isDesktop.value = false);
+	watch(windowWidth, () => {
+		windowWidth.value > 1280
+			? (isDesktop.value = true)
+			: (isDesktop.value = false);
+	});
+});
+
+onMounted(() => {
+	const $footerLogo = $footer.value.querySelector(".footer__logo");
+
+	useRevealAnimation($footerLogo, "animation-from-top--revealed", undefined, {
+		revealPoint: 256,
+	});
+	useRevealAnimation(
+		$footerContact.value,
+		"animation-from-bottom--revealed",
+		$footerLogo,
+		{
+			revealPoint: 256,
+		}
+	);
+
+	// watch(isDesktop, (newIsDesktop) => {
+	// 	newIsDesktop
+	// 		? useRevealAnimation($footerLogo, "animation-from-top--revealed")
+	// 		: useRevealAnimation(
+	// 				$footerLogo,
+	// 				"animation-from-top--revealed",
+	// 				undefined,
+	// 				{
+	// 					revealPoint: 256,
+	// 				}
+	// 		  );
+
+	// 	newIsDesktop
+	// 		? useRevealAnimation(
+	// 				$footerContact.value,
+	// 				"animation-from-bottom--revealed"
+	// 		  )
+	// 		: useRevealAnimation(
+	// 				$footerContact.value,
+	// 				"animation-from-bottom--revealed",
+	// 				$footerLogo,
+	// 				{
+	// 					revealPoint: 256,
+	// 				}
+	// 		  );
+	// });
+});
+const handleLogoMounted = () => {
+	isFooterLogoMounted.value = true;
+};
 </script>
 
 <template>
 	<footer class="footer__container sct-ctr">
-		<div class="footer sct">
-			<LayoutComponentLogo class="footer__logo" background="white" />
+		<div class="footer sct" ref="$footer">
+			<LayoutComponentLogo
+				background="white"
+				class="footer__logo"
+				ref="$footerLogo"
+				:class="{
+					'animation-from-top--hidden': !isDesktop,
+					'animation-from-left--hidden': isDesktop,
+				}"
+				@on-comp-mounted="handleLogoMounted"
+			/>
 			<div class="footer__links-all">
-				<div class="footer__contact">
+				<div
+					class="footer__contact"
+					ref="$footerContact"
+					:class="{
+						'animation-from-bottom--hidden': !isDesktop,
+						'animation-from-right--hidden': isDesktop,
+					}"
+				>
 					<div class="footer__contact-header">Interested to work with me?</div>
 					<ContactButton background="blue" />
 				</div>
@@ -87,7 +170,7 @@ const sitemap = [
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	gap: 6.4rem;
+	gap: 1.6rem;
 	width: 100%;
 	padding: 12.8rem a.f-clampify(20, 128);
 	color: a.$v-accent-1;
@@ -120,7 +203,7 @@ const sitemap = [
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 6.4rem;
+		gap: 3.2rem;
 		@include a.m-for-size(desktop) {
 			flex-direction: row-reverse;
 			align-items: flex-start;
