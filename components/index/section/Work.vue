@@ -35,17 +35,21 @@ onMounted(() => {
 		$header.value
 	);
 });
+const $route = useRoute();
+onMounted(() => {
+	console.log($route.hash);
+});
 </script>
 
 <template>
-	<section id="work" class="work-container sct-ctr">
+	<section class="work-container sct-ctr">
 		<div class="work sct">
 			<div class="work__header-container">
 				<p class="work__header animation-from-bottom--hidden" ref="$header">
 					Projects I've <br />
 					worked on
 				</p>
-				<div class="work__header-abstract">
+				<div id="work" class="work__header-abstract">
 					<img
 						class="animation-from-top--hidden"
 						:src="useAsset('/img/work/abstract/square.svg')"
