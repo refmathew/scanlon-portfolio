@@ -219,7 +219,7 @@ body {
 	opacity: 0;
 }
 .from-top--reveal {
-	animation: from-top--reveal 800ms 2400ms forwards ease-out;
+	animation: from-top--reveal 800ms forwards ease-out;
 }
 
 .from-bottom--hide {
@@ -227,7 +227,7 @@ body {
 	opacity: 0;
 }
 .from-bottom--reveal {
-	animation: from-bottom--reveal 800ms 2400ms forwards ease-out;
+	animation: from-bottom--reveal 800ms forwards ease-out;
 }
 
 .from-left--hide {
@@ -235,7 +235,7 @@ body {
 	opacity: 0;
 }
 .from-left--reveal {
-	animation: from-left--reveal 800ms 2400ms forwards ease-out;
+	animation: from-left--reveal 800ms forwards ease-out;
 }
 
 .from-right--hide {
@@ -243,7 +243,7 @@ body {
 	opacity: 0;
 }
 .from-right--reveal {
-	animation: from-right--reveal 800ms 2400ms forwards ease-out;
+	animation: from-right--reveal 800ms forwards ease-out;
 }
 
 .from-bottom-right--hide {
@@ -251,7 +251,7 @@ body {
 	opacity: 0;
 }
 .from-bottom-right--reveal {
-	animation: from-bottom-right--reveal 800ms 2400ms forwards ease-out;
+	animation: from-bottom-right--reveal 800ms forwards ease-out;
 }
 
 @keyframes from-top--reveal {

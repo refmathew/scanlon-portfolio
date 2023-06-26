@@ -9,8 +9,6 @@ const props = defineProps({
 		to="/contact"
 		class="contact-button"
 		:class="{ 'contact-button--blue': background === 'blue' }"
-		@mouseover="handleMouseOver"
-		@mouseout="handleMouseOut"
 	>
 		Reach Out
 	</NuxtLink>

@@ -45,12 +45,17 @@ const brands = [
 		padding: a.f-clampify(123, 192) a.f-clampify(18, 128) a.f-clampify(36, 64);
 	}
 
+	&__illustration {
+		animation-delay: 2400ms;
+	}
+
 	&__text {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
+		animation-delay: 2400ms;
 		@include a.m-for-size(desktop) {
 			align-items: flex-start;
 			max-width: 53%;
