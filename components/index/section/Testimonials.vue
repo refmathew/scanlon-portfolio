@@ -30,26 +30,21 @@ onMounted(() => {
 	$testimonialCustomers.value.forEach(($testimonialCustomer) => {
 		useRevealAnimation(
 			$testimonialCustomer,
-			"animation-from-bottom--revealed",
-			$testimonialCustomers.value[0]
+			"animation-from-top--revealed",
+			$testimonialPagination.value
 		);
 	});
 	useRevealAnimation(
 		$testimonialPagination.value,
-		"animation-from-bottom--revealed",
-		$testimonialCustomers.value[0]
+		"animation-from-bottom--revealed"
 	);
 	useRevealAnimation(
 		$testimonialsQuote.value,
 		"animation-from-top--revealed",
-		$testimonialCustomers.value[0]
+		$testimonialMessages.value[0]
 	);
 	$testimonialMessages.value.forEach(($testimonialMessage) => {
-		useRevealAnimation(
-			$testimonialMessage,
-			"animation-from-top--revealed",
-			$testimonialCustomers.value[0]
-		);
+		useRevealAnimation($testimonialMessage, "animation-from-bottom--revealed");
 	});
 });
 </script>
@@ -76,13 +71,13 @@ onMounted(() => {
 					class="testimonials__testimonial-slider-item"
 				>
 					<div
-						class="testimonials__testimonial-slider-item-message animation-from-top--hidden"
+						class="testimonials__testimonial-slider-item-message animation-from-bottom--hidden"
 						ref="$testimonialMessages"
 					>
 						{{ testimonial.testimonial }}
 					</div>
 					<div
-						class="testimonials__testimonial-slider-item-customer animation-from-bottom--hidden"
+						class="testimonials__testimonial-slider-item-customer animation-from-top--hidden"
 						ref="$testimonialCustomers"
 					>
 						{{ testimonial.customer }}
