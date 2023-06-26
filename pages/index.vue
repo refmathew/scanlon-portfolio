@@ -1,9 +1,4 @@
-<script setup>
-import ContentService from "../services/content-service";
-const homeContent = useState("homeContent");
-
-(async () => (homeContent.value = await ContentService.FetchHomeContent()))();
-</script>
+<script setup></script>
 
 <template>
 	<NuxtLayout background="blue">
