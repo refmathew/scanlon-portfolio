@@ -1,15 +1,35 @@
 <script setup>
 const aboutContent = useState("aboutContent");
+
+const $mainTitle = ref(null);
+const $mainBody = ref(null);
+
+onMounted(() => {
+	const $mainBodyParagraphs = $mainBody.value.querySelectorAll(
+		".main__body-paragraph"
+	);
+
+	useRevealAnimation(
+		$mainTitle.value,
+		"animation-from-top--revealed",
+		$mainBodyParagraphs[0]
+	);
+	$mainBodyParagraphs.forEach(($mainBodyParagraph) => {
+		useRevealAnimation($mainBodyParagraph, "animation-from-bottom--revealed");
+	});
+});
 </script>
 
 <template>
 	<section class="main__container sct-ctr">
 		<div class="main sct">
 			<div class="main__background-overlay" />
-			<p class="main__title">About me</p>
-			<div class="main__body">
+			<p class="main__title animation-from-top--hidden" ref="$mainTitle">
+				About me
+			</p>
+			<div class="main__body" ref="$mainBody">
 				<p
-					class="main__body-paragraph"
+					class="main__body-paragraph animation-from-bottom--hidden"
 					v-for="paragraph in aboutContent?.about"
 					v-text="paragraph"
 				></p>

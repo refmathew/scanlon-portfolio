@@ -3,11 +3,14 @@
 <template>
 	<section class="heading__wrapper sct-ctr">
 		<div class="heading sct">
-			<div class="heading__title">
+			<div class="heading__title from-top--hide from-top--reveal">
 				I provide digital solutions to your <br />
 				business’ problems.
 			</div>
-			<ContactButton background="blue" class="heading__contact" />
+			<ContactButton
+				background="blue"
+				class="heading__contact from-bottom--hide from-bottom--reveal"
+			/>
 		</div>
 	</section>
 </template>
