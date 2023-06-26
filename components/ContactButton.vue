@@ -20,6 +20,7 @@ const props = defineProps({
 .contact-button
   position: relative
   bottom: 0
+  display: block
   width: fit-content
   padding: 1.2rem 2rem
   border-radius: .4rem
