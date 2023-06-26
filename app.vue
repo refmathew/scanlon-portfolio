@@ -1,5 +1,5 @@
 <script setup>
-const homeContent = useState("homeContent", () => {
+useState("homeContent", () => {
 	return {
 		hero: {
 			title: "Lorem ipsum dolor sit amet.",
@@ -98,6 +98,15 @@ const homeContent = useState("homeContent", () => {
 				company: "Newest Americans",
 				websiteImage: "newest-americans",
 			},
+		],
+	};
+});
+
+useState("aboutContent", () => {
+	return {
+		about: [
+			"Lorem ipsum dolor sit amet consectetur. Est facilisis vitae sem lectus aliquam amet. Commodo rutrum convallis donec nam duis facilisis. Ipsum posuere turpis leo commodo consectetur.",
+			"Est ut scelerisque fringilla at enim et arcu volutpat. Consequat placerat sed eget proin curabitur luctus vitae ipsum. Viverra mollis at volutpat tristique massa. Tincidunt dictum nisl lobortis duis porttitor interdum convallis interdum purus. Risus elit odio tincidunt felis aliquet pellentesque. Eu pellentesque pulvinar elementum nunc aliquam donec. Sed nisl massa eu urna faucibus vitae pellentesque. Elit vulputate nulla vulputate ultricies faucibus suscipit mauris pellentesque.",
 		],
 	};
 });
