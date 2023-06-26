@@ -1,4 +1,6 @@
 <script setup>
+import { useWindowSize } from "@vueuse/core";
+
 const name = ref("");
 const email = ref("");
 const subject = ref("");
@@ -49,14 +51,41 @@ const handleFormSubmit = async () => {
 		console.log(result);
 	}
 };
+
+// ============================================================================>
+// ===   Reveal animation   =====================================================>
+// ============================================================================>
+
+const { width: windowWidth } = useWindowSize();
+const $name = ref(null);
+const $email = ref(null);
+const $subject = ref(null);
+const $message = ref(null);
+const $submit = ref(null);
+
+onMounted(() => {
+	const $formComponents = [
+		$name.value,
+		$email.value,
+		$subject.value,
+		$message.value,
+		$submit.value,
+	];
+
+	$formComponents.forEach(($component) => {
+		useRevealAnimation($component, "animation-from-bottom--revealed");
+	});
+});
 </script>
 
 <template>
 	<section class="main__container sct-ctr">
 		<div class="main sct">
 			<div class="main__text">
-				<div class="main__text-title">Interested to work with me?</div>
-				<div class="main__text-subtitle">
+				<div class="main__text-title from-top--hide from-top--reveal">
+					Interested to work with me?
+				</div>
+				<div class="main__text-subtitle from-bottom-hide from-bottom--reveal">
 					If you have a project in mind or are simply interested in finding out
 					more, get in touch and let’s get things moving.
 				</div>
@@ -64,13 +93,13 @@ const handleFormSubmit = async () => {
 			<form class="main__form" @submit.prevent="handleFormSubmit">
 				<div class="main__form-group-1">
 					<div
-						class="main__form-input-container main__form-input-container-group-1"
+						class="main__form-input-container main__form-input-container-group-1 animation-from-bottom--hidden"
+						ref="$name"
 					>
 						<input
 							class="main__form-input"
 							name="name"
 							placeholder="Name"
-							ref="$name"
 							type="text"
 							v-model="name"
 							@focus="handleInputFocus"
@@ -78,13 +107,13 @@ const handleFormSubmit = async () => {
 						/>
 					</div>
 					<div
-						class="main__form-input-container main__form-input-container-group-1"
+						class="main__form-input-container main__form-input-container-group-1 animation-from-bottom--hidden"
+						ref="$email"
 					>
 						<input
 							class="main__form-input"
 							name="email"
 							placeholder="Email*"
-							ref="$email"
 							type="email"
 							v-model="email"
 							@focus="handleInputFocus"
@@ -92,12 +121,14 @@ const handleFormSubmit = async () => {
 						/>
 					</div>
 				</div>
-				<div class="main__form-input-container">
+				<div
+					class="main__form-input-container animation-from-bottom--hidden"
+					ref="$subject"
+				>
 					<input
 						class="main__form-input"
 						name="subject"
 						placeholder="Subject"
-						ref="$subject"
 						type="text"
 						v-model="subject"
 						@focus="handleInputFocus"
@@ -105,19 +136,25 @@ const handleFormSubmit = async () => {
 					/>
 				</div>
 				<div
-					class="main__form-input-container main__form-input-container--message"
+					class="main__form-input-container main__form-input-container--message animation-from-bottom--hidden"
+					ref="$message"
 				>
 					<textarea
 						class="main__form-input main__form-input--message"
 						name="message"
 						placeholder="Message*"
-						ref="$message"
 						v-model="message"
 						@focus="handleInputFocus"
 						@blur="handleInputBlur"
 					/>
 				</div>
-				<button class="main__form-submit" type="submit">Send Message</button>
+				<button
+					class="main__form-submit animation-from-bottom--hidden"
+					type="submit"
+					ref="$submit"
+				>
+					Send Message
+				</button>
 			</form>
 		</div>
 	</section>
