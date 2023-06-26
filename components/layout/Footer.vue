@@ -84,33 +84,6 @@ onMounted(() => {
 			revealPoint: 256,
 		}
 	);
-
-	// watch(isDesktop, (newIsDesktop) => {
-	// 	newIsDesktop
-	// 		? useRevealAnimation($footerLogo, "animation-from-top--revealed")
-	// 		: useRevealAnimation(
-	// 				$footerLogo,
-	// 				"animation-from-top--revealed",
-	// 				undefined,
-	// 				{
-	// 					revealPoint: 256,
-	// 				}
-	// 		  );
-
-	// 	newIsDesktop
-	// 		? useRevealAnimation(
-	// 				$footerContact.value,
-	// 				"animation-from-bottom--revealed"
-	// 		  )
-	// 		: useRevealAnimation(
-	// 				$footerContact.value,
-	// 				"animation-from-bottom--revealed",
-	// 				$footerLogo,
-	// 				{
-	// 					revealPoint: 256,
-	// 				}
-	// 		  );
-	// });
 });
 const handleLogoMounted = () => {
 	isFooterLogoMounted.value = true;
