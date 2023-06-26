@@ -170,6 +170,7 @@ onMounted(() => {
 	background-color: rgba(white, .64)
 	backdrop-filter: blur(16px)
 	transform: translateY(-100%)
+	animation-delay: 2400ms
 	transition: padding 320ms 480ms cubic-bezier(.4,0,.2,1), transform 640ms ease
 
 	&--active
