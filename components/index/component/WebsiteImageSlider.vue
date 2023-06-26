@@ -34,15 +34,9 @@ onMounted(() => {
 	useRevealAnimation(
 		$companySlider.value,
 		"animation-from-top--revealed",
-		$imageSlider.value,
-		{ revealPoint: 256 }
+		$imageSlider.value
 	);
-	useRevealAnimation(
-		$imageSlider.value,
-		"animation-from-bottom--revealed",
-		undefined,
-		{ revealPoint: 256 }
-	);
+	useRevealAnimation($imageSlider.value, "animation-from-bottom--revealed");
 });
 </script>
 
